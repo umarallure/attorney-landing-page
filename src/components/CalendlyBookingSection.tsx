@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 export default function CalendlyBookingSection() {
   const calendlyUrl = useMemo(
@@ -6,6 +6,69 @@ export default function CalendlyBookingSection() {
       'https://calendly.com/accidentpayments/mva?hide_gdpr_banner=1&background_color=202020&text_color=DADADA&primary_color=AE4010',
     []
   );
+
+  const [mobileIframeHeight, setMobileIframeHeight] = useState<number>(1189);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const updateIsMobile = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+
+    updateIsMobile();
+    window.addEventListener('resize', updateIsMobile);
+
+    return () => {
+      window.removeEventListener('resize', updateIsMobile);
+    };
+  }, []);
+
+  useEffect(() => {
+    const existing = document.querySelector('script[src="https://assets.calendly.com/assets/external/widget.js"]');
+    if (!existing) {
+      const script = document.createElement('script');
+      script.src = 'https://assets.calendly.com/assets/external/widget.js';
+      script.async = true;
+      document.body.appendChild(script);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!isMobile) return;
+
+    const handler = (e: MessageEvent) => {
+      if (typeof e.origin === 'string' && !/\.calendly\.com$/i.test(new URL(e.origin).hostname)) return;
+
+      let data: unknown = e.data;
+      if (typeof data === 'string') {
+        try {
+          data = JSON.parse(data);
+        } catch {
+          return;
+        }
+      }
+
+      if (typeof data !== 'object' || data == null) return;
+
+      const d = data as {
+        event?: string;
+        payload?: { height?: number };
+        height?: number;
+      };
+
+      if (d.event !== 'calendly.page_height') return;
+
+      const height = typeof d.payload?.height === 'number' ? d.payload.height : d.height;
+      if (typeof height !== 'number') return;
+
+      setMobileIframeHeight(height > 1189 ? 1521 : 1189);
+    };
+
+    window.addEventListener('message', handler);
+    return () => {
+      window.removeEventListener('message', handler);
+    };
+  }, [isMobile]);
 
   return (
     <section 
@@ -18,15 +81,23 @@ export default function CalendlyBookingSection() {
       }}
     >
       <div className="relative z-10 mx-auto w-[min(1400px,94vw)]">
+        <div className="lg:hidden mb-6 px-4 text-center">
+          <h2 className="text-[clamp(32px,5vw,48px)] font-bold leading-[1.1] text-white mb-4">
+            Unlock High-Value Signed Cases
+          </h2>
+          <p className="text-[clamp(16px,2vw,20px)] leading-relaxed text-brand mb-8">
+            Get real accident victims, pre-qualified and ready to consult without wasting time or budget.
+          </p>
+        </div>
+
         {/* Calendly Embed */}
         <div className="relative mx-auto flex w-full max-w-[1000px] flex-col items-center gap-4">
           <div className="w-full overflow-hidden rounded-smooth bg-[#202020] shadow-[0_18px_50px_rgba(0,0,0,0.35)]">
-            <iframe 
-              className="h-[1189px] sm:h-[1050px] md:h-[700px] lg:h-[680px] w-full block" 
-              src={calendlyUrl} 
-              title="Calendly Scheduling" 
-              allowFullScreen
-              style={{ overflow: 'hidden' }}
+            <div
+              className="calendly-inline-widget w-full h-[1189px] sm:h-[1050px] md:h-[700px] lg:h-[680px]"
+              data-url={calendlyUrl}
+              data-resize="true"
+              style={{ height: isMobile ? `${mobileIframeHeight}px` : undefined }}
             />
           </div>
         </div>
@@ -50,10 +121,10 @@ export default function CalendlyBookingSection() {
               <div 
                 className="relative z-10 flex flex-col justify-center p-4 sm:p-8 bg-transparent"
               >
-                <h2 className="text-[clamp(32px,5vw,48px)] font-bold leading-[1.1] text-white mb-6">
+                <h2 className="hidden lg:block text-[clamp(32px,5vw,48px)] font-bold leading-[1.1] text-white mb-6">
                   Unlock High-Value Signed Cases
                 </h2>
-                <p className="text-[clamp(16px,2vw,20px)] leading-relaxed text-brand mb-8">
+                <p className="hidden lg:block text-[clamp(16px,2vw,20px)] leading-relaxed text-brand mb-8">
                   Get real accident victims, pre-qualified and ready to consult without wasting time or budget.
                 </p>
                 <div className="hidden lg:block">
