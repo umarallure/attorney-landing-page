@@ -22,10 +22,11 @@ export default function CalendlyBookingSection() {
         <div className="relative mx-auto flex w-full max-w-[1000px] flex-col items-center gap-4">
           <div className="w-full overflow-hidden rounded-smooth bg-[#202020] shadow-[0_18px_50px_rgba(0,0,0,0.35)]">
             <iframe 
-              className="h-[900px] sm:h-[950px] md:h-[700px] lg:h-[680px] w-full block" 
+              className="h-[1189px] sm:h-[1050px] md:h-[700px] lg:h-[680px] w-full block" 
               src={calendlyUrl} 
               title="Calendly Scheduling" 
               allowFullScreen
+              style={{ overflow: 'hidden' }}
             />
           </div>
         </div>
