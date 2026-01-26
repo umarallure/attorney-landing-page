@@ -3,7 +3,7 @@ import { useEffect, useMemo, useState } from 'react';
 export default function CalendlyBookingSection() {
   const calendlyUrl = useMemo(
     () =>
-      'https://calendly.com/accidentpayments/mva?hide_gdpr_banner=1&background_color=202020&text_color=DADADA&primary_color=AE4010',
+      'https://calendly.com/accidentpayments/mva?hide_gdpr_banner=1&background_color=202020&text_color=DADADA&primary_color=CC3F08',
     []
   );
 
@@ -96,7 +96,7 @@ export default function CalendlyBookingSection() {
             <div
               className="calendly-inline-widget w-full h-[1189px] sm:h-[1050px] md:h-[700px] lg:h-[680px]"
               data-url={calendlyUrl}
-              data-resize="true"
+              data-resize={isMobile ? 'true' : undefined}
               style={{ height: isMobile ? `${mobileIframeHeight}px` : undefined }}
             />
           </div>
@@ -130,7 +130,7 @@ export default function CalendlyBookingSection() {
                 <div className="hidden lg:block">
                   <div>
                     <a
-                      className="inline-flex items-center justify-center rounded-[8px] bg-gradient-to-r from-brand via-[#c24e1a] to-brand hover:shadow-[0_14px_30px_rgba(174,64,16,0.30)] px-8 py-4 text-[16px] sm:text-[18px] font-bold text-[#fef7f2] transition-all hover:scale-105 shadow-glow mb-6"
+                      className="inline-flex items-center justify-center rounded-[8px] bg-gradient-to-r from-brand via-[#cc3f08] to-brand hover:shadow-[0_14px_30px_rgba(204,63,8,0.30)] px-8 py-4 text-[16px] sm:text-[18px] font-bold text-[#fef7f2] transition-all hover:scale-105 shadow-glow mb-6"
                       href="#booking"
                     >
                       SCHEDULE A CALL
@@ -162,7 +162,7 @@ export default function CalendlyBookingSection() {
 
             <div className="lg:hidden mt-8 px-8 sm:px-12 pb-8 sm:pb-12 text-center">
               <a
-                className="inline-flex w-full items-center justify-center rounded-[8px] bg-gradient-to-r from-brand via-[#c24e1a] to-brand hover:shadow-[0_14px_30px_rgba(174,64,16,0.30)] px-6 py-4 text-[16px] font-bold text-[#fef7f2] transition-all shadow-glow"
+                className="inline-flex w-full items-center justify-center rounded-[8px] bg-gradient-to-r from-brand via-[#cc3f08] to-brand hover:shadow-[0_14px_30px_rgba(204,63,8,0.30)] px-6 py-4 text-[16px] font-bold text-[#fef7f2] transition-all shadow-glow"
                 href="#booking"
               >
                 SCHEDULE A CALL

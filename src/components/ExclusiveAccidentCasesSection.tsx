@@ -91,7 +91,7 @@ export default function ExclusiveAccidentCasesSection() {
               <p className="mt-3 text-xs sm:text-sm leading-relaxed text-[#444]">
                 We’ve worked with multiple vendors before, but Accident Payments stands out for exclusivity and consistency. Our intake team immediately noticed the difference.
               </p>
-              <p className="mt-5 text-sm font-extrabold text-[#1b1b1b]">Michael R</p>
+              <p className="mt-5 text-sm font-extrabold text-[#1b1b1b]">Michael T</p>
             </div>
           </div>
         </div>

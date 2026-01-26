@@ -10,7 +10,7 @@ export default function Header() {
           <a href="#faq" className="hover:text-bone transition-colors">FAQs</a>
         </div>
         <a
-          className="inline-flex items-center justify-center gap-2 rounded-pill border border-transparent bg-gradient-to-r from-brand via-[#c24e1a] to-brand px-3 py-1.5 text-[13px] sm:px-4 sm:py-2 sm:text-[15px] font-semibold text-[#fef7f2] shadow-glow transition hover:-translate-y-[1px] hover:shadow-[0_14px_30px_rgba(174,64,16,0.30)]"
+          className="inline-flex items-center justify-center gap-2 rounded-pill border border-transparent bg-gradient-to-r from-brand via-[#cc3f08] to-brand px-3 py-1.5 text-[13px] sm:px-4 sm:py-2 sm:text-[15px] font-semibold text-[#fef7f2] shadow-glow transition hover:-translate-y-[1px] hover:shadow-[0_14px_30px_rgba(204,63,8,0.30)]"
           href="#booking"
         >
           BOOK A CALL

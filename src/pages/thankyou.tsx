@@ -49,7 +49,7 @@ export default function ThankYou() {
               <div className="flex items-center gap-6">
                 <a 
                   href="#" 
-                  className="text-brand transition-all hover:scale-110 hover:text-[#c24e1a]"
+                  className="text-brand transition-all hover:scale-110 hover:text-[#CC3F08]"
                   aria-label="Instagram"
                 >
                   <svg className="h-8 w-8" fill="currentColor" viewBox="0 0 24 24">
@@ -58,7 +58,7 @@ export default function ThankYou() {
                 </a>
                 <a 
                   href="#" 
-                  className="text-brand transition-all hover:scale-110 hover:text-[#c24e1a]"
+                  className="text-brand transition-all hover:scale-110 hover:text-[#CC3F08]"
                   aria-label="Facebook"
                 >
                   <svg className="h-8 w-8" fill="currentColor" viewBox="0 0 24 24">
@@ -67,7 +67,7 @@ export default function ThankYou() {
                 </a>
                 <a 
                   href="#" 
-                  className="text-brand transition-all hover:scale-110 hover:text-[#c24e1a]"
+                  className="text-brand transition-all hover:scale-110 hover:text-[#CC3F08]"
                   aria-label="Twitter"
                 >
                   <svg className="h-8 w-8" fill="currentColor" viewBox="0 0 24 24">
