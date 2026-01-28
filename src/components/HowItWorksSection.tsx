@@ -26,41 +26,41 @@ export default function HowItWorksSection() {
 
         <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
           <div className="flex flex-col items-center">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#0f0f0f] text-3xl font-extrabold text-[#f6f6f6]">
+            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#0f0f0f] text-5xl font-extrabold text-[#f6f6f6]">
               1
             </div>
-            <p className="mt-4 text-lg font-extrabold tracking-wide text-[#f6f6f6]">APPLY &amp; ONBOARD</p>
-            <p className="mt-1 max-w-[220px] text-sm sm:text-sm leading-relaxed text-[#f6f6f6]">
+            <p className="mt-4 text-xl font-extrabold tracking-wide text-[#f6f6f6]">APPLY &amp; ONBOARD</p>
+            <p className="mt-1 max-w-[220px] text-base sm:text-base leading-relaxed text-[#f6f6f6]">
               Complete quick intake and firm criteria.
             </p>
           </div>
 
           <div className="flex flex-col items-center">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#0f0f0f] text-3xl font-extrabold text-[#f6f6f6]">
+            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#0f0f0f] text-5xl font-extrabold text-[#f6f6f6]">
               2
             </div>
-            <p className="mt-4 text-lg font-extrabold tracking-wide text-[#f6f6f6]">CAMPAIGN SETUP</p>
-            <p className="mt-1 max-w-[220px] text-sm sm:text-sm leading-relaxed text-[#f6f6f6]">
+            <p className="mt-4 text-xl font-extrabold tracking-wide text-[#f6f6f6]">CAMPAIGN SETUP</p>
+            <p className="mt-1 max-w-[220px] text-base sm:text-base leading-relaxed text-[#f6f6f6]">
               We tailor campaigns by location and case type.
             </p>
           </div>
 
           <div className="flex flex-col items-center">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#0f0f0f] text-3xl font-extrabold text-[#f6f6f6]">
+            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#0f0f0f] text-5xl font-extrabold text-[#f6f6f6]">
               3
             </div>
-            <p className="mt-4 text-lg font-extrabold tracking-wide text-[#f6f6f6]">RECEIVE LEADS</p>
-            <p className="mt-1 max-w-[220px] text-sm sm:text-sm leading-relaxed text-[#f6f6f6]">
+            <p className="mt-4 text-xl font-extrabold tracking-wide text-[#f6f6f6]">RECEIVE LEADS</p>
+            <p className="mt-1 max-w-[220px] text-base sm:text-base leading-relaxed text-[#f6f6f6]">
               Get exclusive accident leads in real time.
             </p>
           </div>
 
           <div className="flex flex-col items-center">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#0f0f0f] text-3xl font-extrabold text-[#f6f6f6]">
+            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#0f0f0f] text-5xl font-extrabold text-[#f6f6f6]">
               4
             </div>
-            <p className="mt-4 text-lg font-extrabold tracking-wide text-[#f6f6f6]">SIGN MORE CLIENTS</p>
-            <p className="mt-1 max-w-[220px] text-sm sm:text-sm leading-relaxed text-[#f6f6f6]">
+            <p className="mt-4 text-xl font-extrabold tracking-wide text-[#f6f6f6]">SIGN MORE CLIENTS</p>
+            <p className="mt-1 max-w-[220px] text-base sm:text-base leading-relaxed text-[#f6f6f6]">
               Focus on cases while we fuel your pipeline.
             </p>
           </div>

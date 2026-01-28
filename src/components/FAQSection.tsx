@@ -5,16 +5,16 @@ type FaqItem = {
 
 const faqs: FaqItem[] = [
   {
-    q: 'Are these leads exclusive?',
-    a: 'Yes. We never double-sell a lead. When you get a notification, that client belongs to you.',
+    q: 'Are These Signed Cases Exclusive?',
+    a: "Yes. We never double-sell any cases. Once we sign your law firm’s retainer for a customer, it exclusively belongs to you.",
   },
   {
-    q: 'Do you handle MVA and Personal Injury?',
-    a: 'Yes, we specialize in high-value torts including MVA, Premises Liability, and Workers\' Comp.',
+    q: 'Do You Handle MVA And Personal Injury?',
+    a: 'We specialize in high-value torts, with a primary focus on motor vehicle accident',
   },
   {
-    q: 'What if a lead is unqualified?',
-    a: "We have a transparent credit policy for any lead that doesn't meet the pre-agreed vetting criteria.",
+    q: 'What If A Signed Case Is Unqualified?',
+    a: "We have a transparent credit policy for any signed case that doesn’t meet the pre-agreed vetting criteria. With us, you approve before you pay.",
   },
 ];
 

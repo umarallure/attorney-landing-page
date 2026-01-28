@@ -21,19 +21,19 @@ export default function ExclusiveAccidentCasesSection() {
 
           <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-3 sm:gap-10">
             <div className="text-center">
-              <div className="text-[clamp(64px,8vw,96px)] font-black leading-none text-brand">9</div>
-              <div className="mt-3 text-base sm:text-lg font-extrabold text-[#1b1b1b]">Signed Cases for</div>
-              <div className="text-base sm:text-lg font-extrabold text-[#1b1b1b]">$1,250 in Minnesota</div>
+              <div className="text-9xl font-black leading-none text-brand">26</div>
+              <div className="text-lg sm:text-xl font-extrabold text-[#1b1b1b]">Settlements Closed for</div>
+              <div className="text-base sm:text-lg font-extrabold text-[#1b1b1b]">$2,500 in Minnesota</div>
             </div>
             <div className="text-center">
-              <div className="text-[clamp(64px,8vw,96px)] font-black leading-none text-brand">6</div>
-              <div className="mt-3 text-base sm:text-lg font-extrabold text-[#1b1b1b]">Signed Cases for</div>
-              <div className="text-base sm:text-lg font-extrabold text-[#1b1b1b]">$1,480 in Washington</div>
+              <div className="text-9xl font-black leading-none text-brand">43</div>
+              <div className="text-xl sm:text-xl font-extrabold text-[#1b1b1b]">Settlements Closed for</div>
+              <div className="text-base sm:text-lg font-extrabold text-[#1b1b1b]">$3,500 in Washington</div>
             </div>
             <div className="text-center">
-              <div className="text-[clamp(64px,8vw,96px)] font-black leading-none text-brand">4</div>
-              <div className="mt-3 text-base sm:text-lg font-extrabold text-[#1b1b1b]">Signed Cases for</div>
-              <div className="text-base sm:text-lg font-extrabold text-[#1b1b1b]">$1,750 in Oregon</div>
+              <div className="text-9xl font-black leading-none text-brand">31</div>
+              <div className="text-xl sm:text-xl font-extrabold text-[#1b1b1b]">Settlements Closed for</div>
+              <div className="text-base sm:text-lg font-extrabold text-[#1b1b1b]">$6,500 in Oregon</div>
             </div>
           </div>
         </div>
@@ -51,7 +51,7 @@ export default function ExclusiveAccidentCasesSection() {
                 Ready to Start Receiving Exclusive Accident Cases?
               </p>
               <a
-                className="mt-4 inline-flex items-center justify-center rounded-lg bg-brand px-3 py-2 text-base font-extrabold text-[#1b1b1b] shadow-[0_12px_30px_rgba(0,0,0,0.25)] transition hover:-translate-y-[1px] sm:mt-5 sm:bg-white sm:px-8 sm:py-3 sm:text-base"
+                className="mt-4 inline-flex items-center justify-center rounded-2xl bg-brand px-8 py-5 text-lg font-extrabold text-white shadow-[0_12px_30px_rgba(0,0,0,0.25)] transition hover:-translate-y-[1px] sm:mt-5 sm:bg-brand sm:px-10 sm:py-4 sm:text-lg"
                 href="#booking"
               >
                 SCHEDULE A CALL
@@ -93,6 +93,15 @@ export default function ExclusiveAccidentCasesSection() {
               </p>
               <p className="mt-5 text-sm font-extrabold text-[#1b1b1b]">Michael T</p>
             </div>
+          </div>
+
+          <div className="mt-10 flex justify-center">
+            <a
+              href="#booking"
+              className="inline-flex items-center justify-center rounded-2xl bg-[#0f0f0f] px-12 py-4 text-[16px] sm:text-[18px] font-extrabold text-white shadow-[0_14px_30px_rgba(0,0,0,0.25)] transition hover:-translate-y-[1px]"
+            >
+              SCHEDULE A CALL
+            </a>
           </div>
         </div>
       </div>
