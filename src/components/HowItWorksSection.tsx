@@ -39,7 +39,7 @@ export default function HowItWorksSection() {
             <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#0f0f0f] text-5xl font-extrabold text-[#f6f6f6]">
               2
             </div>
-            <p className="mt-4 text-xl font-extrabold tracking-wide text-[#f6f6f6]">CAMPAIGN SETUP</p>
+            <p className="mt-4 text-xl font-extrabold tracking-wide text-[#f6f6f6]">SALES CAMPAIGN SETUP</p>
             <p className="mt-1 max-w-[220px] text-base sm:text-base leading-relaxed text-[#f6f6f6]">
               We tailor campaigns by location and case type.
             </p>
@@ -49,9 +49,9 @@ export default function HowItWorksSection() {
             <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#0f0f0f] text-5xl font-extrabold text-[#f6f6f6]">
               3
             </div>
-            <p className="mt-4 text-xl font-extrabold tracking-wide text-[#f6f6f6]">RECEIVE LEADS</p>
+            <p className="mt-4 text-xl font-extrabold tracking-wide text-[#f6f6f6]">RECEIVE SIGNED CASES</p>
             <p className="mt-1 max-w-[220px] text-base sm:text-base leading-relaxed text-[#f6f6f6]">
-              Get exclusive accident leads in real time.
+              Get exclusive accident cases in real time.
             </p>
           </div>
 

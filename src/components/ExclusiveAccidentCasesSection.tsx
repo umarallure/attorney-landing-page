@@ -69,9 +69,9 @@ export default function ExclusiveAccidentCasesSection() {
           <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-3 sm:gap-8">
             <div className="rounded-smooth bg-white/85 px-6 py-6 text-left shadow-[0_14px_40px_rgba(0,0,0,0.12)] backdrop-blur">
               <div className="text-[18px] text-yellow-400">★★★★★</div>
-              <p className="mt-4 text-sm font-extrabold text-[#1b1b1b]">“High-quality accident cases with real intent”</p>
+              <p className="mt-4 text-sm font-extrabold text-[#1b1b1b]">“Outsourcing our sales operations was the best decision we made.”</p>
               <p className="mt-3 text-xs sm:text-sm leading-relaxed text-[#444]">
-                Accident Payments has been a reliable growth partner for our personal injury practice. The leads are exclusive, properly screened, and delivered in real time.
+                Partnering with Accident Payments felt like instantly adding a highly trained sales team that actually understands attorneys. Their qualification process is dialed in, the cases are real, and the intent is obvious from the first call. We’re signing better cases with less wasted effort.
               </p>
               <p className="mt-5 text-sm font-extrabold text-[#1b1b1b]">Michael R</p>
             </div>
@@ -80,18 +80,18 @@ export default function ExclusiveAccidentCasesSection() {
               <div className="text-[18px] text-yellow-400">★★★★★</div>
               <p className="mt-4 text-sm font-extrabold text-[#1b1b1b]">“Transparent, professional, and effective”</p>
               <p className="mt-3 text-xs sm:text-sm leading-relaxed text-[#444]">
-                Expectations are clear and delivery is exactly what they promise. The quality of accident cases and the speed of delivery helped our team convert more prospects.
+                Accident Payments sets clear expectations and delivers exactly what they promise. The quality of accident cases and the speed of delivery helped our team convert more prospects into signed clients.
               </p>
               <p className="mt-5 text-sm font-extrabold text-[#1b1b1b]">Sarah L</p>
             </div>
 
             <div className="rounded-smooth bg-white/85 px-6 py-6 text-left shadow-[0_14px_40px_rgba(0,0,0,0.12)] backdrop-blur">
               <div className="text-[18px] text-yellow-400">★★★★★</div>
-              <p className="mt-4 text-sm font-extrabold text-[#1b1b1b]">“A noticeable upgrade from shared leads”</p>
+              <p className="mt-4 text-sm font-extrabold text-[#1b1b1b]">“A noticeable upgrade from shared cases”</p>
               <p className="mt-3 text-xs sm:text-sm leading-relaxed text-[#444]">
-                We’ve worked with multiple vendors before, but Accident Payments stands out for exclusivity and consistency. Our intake team immediately noticed the difference.
+                We’ve worked with multiple vendors before, but Accident Payments stands out for exclusivity and consistency. Our intake team immediately noticed the difference in lead quality.
               </p>
-              <p className="mt-5 text-sm font-extrabold text-[#1b1b1b]">Michael T</p>
+              <p className="mt-5 text-sm font-extrabold text-[#1b1b1b]">Xavier T</p>
             </div>
           </div>
 
