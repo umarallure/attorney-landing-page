@@ -30,10 +30,10 @@ export default function FAQSection() {
       }}
     >
       <div className="mx-auto w-[min(1200px,94vw)] px-4">
-        <h2 className="text-[clamp(24px,4vw,36px)] font-bold text-[#f6f6f6]">
+        <h2 className="text-center text-[clamp(24px,4vw,36px)] font-bold text-[#f6f6f6]">
           FAQs
         </h2>
-        <p className="mt-2 max-w-3xl text-base sm:text-lg leading-relaxed text-[#bfbfbf]">
+        <p className="mx-auto mt-2 max-w-3xl text-center text-base sm:text-lg leading-relaxed text-[#bfbfbf]">
           Still thinking it through? Here are straight answers.
         </p>
         <div className="mt-6 grid gap-5">
