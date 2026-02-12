@@ -19,8 +19,14 @@ export default function CalendlyBookingSection() {
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const videoSectionRef = useRef<HTMLDivElement>(null);
   const hasStartedRef = useRef(false);
+  const touchStartX = useRef<number>(0);
+  const touchStartY = useRef<number>(0);
+  const swipeDirection = useRef<'horizontal' | 'vertical' | null>(null);
+  const [dragOffset, setDragOffset] = useState(0);
+  const isDragging = useRef(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isMuted, setIsMuted] = useState(false);
+  const [showSwipeHint, setShowSwipeHint] = useState(false);
   const [isSliding, setIsSliding] = useState(false);
   const [slideDirection, setSlideDirection] = useState<'left' | 'right'>('left');
 
@@ -126,6 +132,88 @@ export default function CalendlyBookingSection() {
     video.muted = !video.muted;
     setIsMuted(video.muted);
   }, [activeIndex]);
+
+  // Drag-responsive touch swipe handlers
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    if (isSliding) return;
+    touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
+    swipeDirection.current = null;
+    isDragging.current = true;
+    setShowSwipeHint(false);
+  }, [isSliding]);
+
+  const handleTouchMove = useCallback((e: React.TouchEvent) => {
+    if (!isDragging.current) return;
+
+    const dx = e.touches[0].clientX - touchStartX.current;
+    const dy = e.touches[0].clientY - touchStartY.current;
+
+    // Lock direction after 10px of movement
+    if (swipeDirection.current === null && (Math.abs(dx) > 10 || Math.abs(dy) > 10)) {
+      swipeDirection.current = Math.abs(dx) > Math.abs(dy) ? 'horizontal' : 'vertical';
+    }
+
+    // If vertical, let the page scroll normally
+    if (swipeDirection.current === 'vertical') {
+      isDragging.current = false;
+      setDragOffset(0);
+      return;
+    }
+
+    // If horizontal, prevent page scroll and track drag
+    if (swipeDirection.current === 'horizontal') {
+      e.preventDefault();
+      setDragOffset(dx);
+    }
+  }, []);
+
+  const handleTouchEnd = useCallback(() => {
+    if (!isDragging.current || swipeDirection.current !== 'horizontal') {
+      isDragging.current = false;
+      swipeDirection.current = null;
+      setDragOffset(0);
+      return;
+    }
+
+    const offset = dragOffset;
+    isDragging.current = false;
+    swipeDirection.current = null;
+    setDragOffset(0);
+
+    // Snap threshold: 25% of container width
+    const containerWidth = videoSectionRef.current?.offsetWidth ?? 400;
+    const snapThreshold = containerWidth * 0.25;
+
+    if (offset < -snapThreshold) {
+      goNext();
+    } else if (offset > snapThreshold) {
+      goPrev();
+    }
+  }, [dragOffset, goNext, goPrev]);
+
+  // Show swipe hint on mobile when video section comes into view
+  useEffect(() => {
+    const isTouchDevice = window.matchMedia('(max-width: 639px)').matches;
+    if (!isTouchDevice) return;
+
+    const section = videoSectionRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShowSwipeHint(true);
+          setTimeout(() => setShowSwipeHint(false), 3000);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const updateIsMobile = () => {
@@ -243,8 +331,9 @@ export default function CalendlyBookingSection() {
           </div>
 
           <div className="relative mt-8 mx-auto w-[min(1100px,94vw)]">
-            <div className="grid grid-cols-[5%_90%_5%] items-center">
-              <div className="flex items-center justify-center">
+            <div className="grid grid-cols-1 sm:grid-cols-[5%_90%_5%] items-center">
+              {/* Left arrow - hidden on mobile */}
+              <div className="hidden sm:flex items-center justify-center">
                 <button
                   onClick={goPrev}
                   className="flex h-11 w-11 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-sm border border-white/20 transition-all hover:bg-brand hover:border-brand hover:scale-110 shadow-lg"
@@ -255,7 +344,13 @@ export default function CalendlyBookingSection() {
               </div>
 
               {/* Carousel container */}
-              <div className="relative w-full overflow-hidden rounded-[16px]" style={{ aspectRatio: '16/9', maxHeight: '70vh' }}>
+              <div
+                className="relative w-full overflow-hidden rounded-[16px]"
+                style={{ aspectRatio: '16/9', maxHeight: '70vh', touchAction: 'pan-y' }}
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
+              >
                 <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-24 bg-gradient-to-b from-[#1a1a1a] to-transparent" />
                 <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-24 bg-gradient-to-t from-[#1a1a1a] to-transparent" />
 
@@ -263,24 +358,34 @@ export default function CalendlyBookingSection() {
                 {videos.map((src, i) => {
                   const isActive = i === activeIndex;
                   const isPending = i === pendingIndex;
-                  const isVisible = isActive || isPending;
+                  const isDragActive = dragOffset !== 0 && !isSliding;
+                  const nextIdx = (activeIndex + 1) % videos.length;
+                  const prevIdx = (activeIndex - 1 + videos.length) % videos.length;
+                  const isDragPeek = isDragActive && (i === nextIdx || i === prevIdx);
+                  const isVisible = isActive || isPending || isDragPeek;
 
                   let transform = 'translateX(100%)';
                   if (isActive && !isSliding) {
-                    transform = 'translateX(0)';
+                    transform = `translateX(${dragOffset}px)`;
                   } else if (isActive && isSliding) {
                     transform = slideDirection === 'left' ? 'translateX(-100%)' : 'translateX(100%)';
                   } else if (isPending && !isSliding) {
                     transform = slideDirection === 'left' ? 'translateX(100%)' : 'translateX(-100%)';
                   } else if (isPending && isSliding) {
                     transform = 'translateX(0)';
+                  } else if (isDragActive && i === nextIdx) {
+                    transform = `translateX(calc(100% + ${dragOffset}px))`;
+                  } else if (isDragActive && i === prevIdx) {
+                    transform = `translateX(calc(-100% + ${dragOffset}px))`;
                   }
+
+                  const useTransition = isSliding && !isDragActive;
 
                   return (
                     <div
                       key={src}
                       className={`absolute inset-0 ${
-                        isSliding || isActive ? 'transition-transform duration-[400ms] ease-in-out' : ''
+                        useTransition ? 'transition-transform duration-[400ms] ease-in-out' : ''
                       }`}
                       style={{
                         transform,
@@ -320,7 +425,8 @@ export default function CalendlyBookingSection() {
                 )}
               </div>
 
-              <div className="flex items-center justify-center">
+              {/* Right arrow - hidden on mobile */}
+              <div className="hidden sm:flex items-center justify-center">
                 <button
                   onClick={goNext}
                   className="flex h-11 w-11 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-sm border border-white/20 transition-all hover:bg-brand hover:border-brand hover:scale-110 shadow-lg"
@@ -346,6 +452,15 @@ export default function CalendlyBookingSection() {
                 />
               ))}
             </div>
+
+            {/* Swipe hint - mobile only */}
+            {showSwipeHint && (
+              <div className="sm:hidden mt-3 flex items-center justify-center gap-1.5 text-white/40 text-xs animate-pulse">
+                <ChevronLeft className="h-3.5 w-3.5" />
+                <span>Swipe to navigate</span>
+                <ChevronRight className="h-3.5 w-3.5" />
+              </div>
+            )}
           </div>
 
           <div className="mx-auto max-w-[1100px] px-4 sm:px-12 pt-8 pb-8 sm:pb-12 text-center">
