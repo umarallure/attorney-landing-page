@@ -9,7 +9,7 @@ export default function WhyAccidentPaymentsSection() {
           </h2>
         </div>
         <p className="mx-auto mt-2 max-w-4xl text-sm sm:text-lg font-medium leading-relaxed text-[#444]">
-          We don’t generate leads. We qualify, follow up, and deliver signed cases ready to sign.
+          We don't generate leads. We qualify, follow up, and deliver signed cases ready for your law firm.
         </p>
 
         <div className="mt-10 grid grid-cols-1 gap-2 sm:grid-cols-3 sm:gap-4">
@@ -21,19 +21,19 @@ export default function WhyAccidentPaymentsSection() {
 
           <div className="flex flex-col items-center">
             <img src="/assets/2.png" alt="Fast follow-up system" className="h-24 w-auto sm:h-28" />
-            <p className="mt-2 text-lg font-extrabold tracking-wide text-brand">FAST FOLLOW-UP</p>
-            <p className="text-2xl sm:text-3xl font-extrabold text-brand">SYSTEM</p>
+            <p className="mt-2 text-lg font-extrabold tracking-wide text-brand">CUSTOMIZED</p>
+            <p className="text-2xl sm:text-3xl font-extrabold text-brand">CASE DELIVERY</p>
           </div>
 
           <div className="flex flex-col items-center">
             <img src="/assets/3.png" alt="Premium case quality" className="h-24 w-auto sm:h-28" />
-            <p className="mt-2 text-lg font-extrabold tracking-wide text-brand">PREMIUM</p>
+            <p className="mt-2 text-lg font-extrabold tracking-wide text-brand">EXCLUSIVE PREMIUM</p>
             <p className="text-2xl sm:text-3xl font-extrabold text-brand">CASE QUALITY</p>
           </div>
         </div>
 
         <p className="mt-8 text-sm sm:text-sm font-semibold text-[#666]">
-          Trusted by personal injury firms to close more cases without expanding their in-house sales team.
+          Trusted by personal injury law firms to close more cases without expanding their in-house sales and marketing team.
         </p>
 
         <div className="mt-8 flex justify-center">

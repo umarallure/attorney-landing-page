@@ -31,7 +31,7 @@ export default function HowItWorksSection() {
             </div>
             <p className="mt-4 text-xl font-extrabold tracking-wide text-[#f6f6f6]">APPLY &amp; ONBOARD</p>
             <p className="mt-1 max-w-[220px] text-base sm:text-base leading-relaxed text-[#f6f6f6]">
-              Complete quick intake and firm criteria.
+              Complete a quick intake form with your custom case criteria.
             </p>
           </div>
 
@@ -51,7 +51,7 @@ export default function HowItWorksSection() {
             </div>
             <p className="mt-4 text-xl font-extrabold tracking-wide text-[#f6f6f6]">RECEIVE SIGNED CASES</p>
             <p className="mt-1 max-w-[220px] text-base sm:text-base leading-relaxed text-[#f6f6f6]">
-              Get exclusive accident cases in real time.
+              Get exclusive signed retainers for your law firm.
             </p>
           </div>
 
@@ -61,7 +61,7 @@ export default function HowItWorksSection() {
             </div>
             <p className="mt-4 text-xl font-extrabold tracking-wide text-[#f6f6f6]">SIGN MORE CLIENTS</p>
             <p className="mt-1 max-w-[220px] text-base sm:text-base leading-relaxed text-[#f6f6f6]">
-              Focus on cases while we fuel your pipeline.
+              Focus on cases while we sell customers for you.
             </p>
           </div>
         </div>

@@ -21,19 +21,19 @@ export default function ExclusiveAccidentCasesSection() {
 
           <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-3 sm:gap-10">
             <div className="text-center">
-              <div className="text-9xl font-black leading-none text-brand">26</div>
-              <div className="text-lg sm:text-xl font-base text-[#1b1b1b]">Settlements Closed for</div>
-              <div className="text-xl sm:text-xl font-extrabold text-[#1b1b1b]">$2,500 in Minnesota</div>
+              <div className="text-7xl font-black leading-none text-brand">$2,500</div>
+              <div className="text-lg sm:text-xl font-base text-[#1b1b1b]">Average Cost Per Acquisition</div>
+              <div className="text-xl sm:text-xl font-extrabold text-[#1b1b1b]">in New York</div>
             </div>
             <div className="text-center">
-              <div className="text-9xl font-black leading-none text-brand">43</div>
-              <div className="text-lg sm:text-xl font-base text-[#1b1b1b]">Settlements Closed for</div>
-              <div className="text-xl sm:text-xl font-extrabold text-[#1b1b1b]">$3,500 in Washington</div>
+              <div className="text-7xl font-black leading-none text-brand">$3,500</div>
+              <div className="text-lg sm:text-xl font-base text-[#1b1b1b]">Average Cost Per Acquisition</div>
+              <div className="text-xl sm:text-xl font-extrabold text-[#1b1b1b]">in Texas</div>
             </div>
             <div className="text-center">
-              <div className="text-9xl font-black leading-none text-brand">31</div>
-              <div className="text-lg sm:text-xl font-base text-[#1b1b1b]">Settlements Closed for</div>
-              <div className="text-xl sm:text-xl font-extrabold text-[#1b1b1b]">$6,500 in Oregon</div>
+              <div className="text-7xl font-black leading-none text-brand">$6,500</div>
+              <div className="text-lg sm:text-xl font-base text-[#1b1b1b]">Average Cost Per Acquisition</div>
+              <div className="text-xl sm:text-xl font-extrabold text-[#1b1b1b]">in California</div>
             </div>
           </div>
         </div>
