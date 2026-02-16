@@ -9,7 +9,6 @@ export default function CalendlyBookingSection() {
     []
   );
 
-  const [mobileIframeHeight, setMobileIframeHeight] = useState<number>(1189);
   const [isMobile, setIsMobile] = useState(false);
   const dashboardRef = useRef<HTMLDivElement>(null);
   const mobileDashboardRef = useRef<HTMLDivElement>(null);
@@ -108,43 +107,7 @@ export default function CalendlyBookingSection() {
     }
   }, [shouldLoadCalendly]);
 
-  useEffect(() => {
-    if (!isMobile) return;
-
-    const handler = (e: MessageEvent) => {
-      if (typeof e.origin === 'string' && !/\.calendly\.com$/i.test(new URL(e.origin).hostname)) return;
-
-      let data: unknown = e.data;
-      if (typeof data === 'string') {
-        try {
-          data = JSON.parse(data);
-        } catch {
-          return;
-        }
-      }
-
-      if (typeof data !== 'object' || data == null) return;
-
-      const d = data as {
-        event?: string;
-        payload?: { height?: number };
-        height?: number;
-      };
-
-      if (d.event !== 'calendly.page_height') return;
-
-      const height = typeof d.payload?.height === 'number' ? d.payload.height : d.height;
-      if (typeof height !== 'number') return;
-
-      setMobileIframeHeight(height > 1189 ? 1521 : 1189);
-    };
-
-    window.addEventListener('message', handler);
-    return () => {
-      window.removeEventListener('message', handler);
-    };
-  }, [isMobile]);
-
+  const mobileCalendlyHeight = 1521;
   return (
     <LazyMotion features={domAnimation}>
       <section 
@@ -176,6 +139,7 @@ export default function CalendlyBookingSection() {
                     height={150}
                     className="w-full h-auto rotate-45"
                     priority
+                    unoptimized
                   />
                 </div>
               </div>
@@ -188,8 +152,7 @@ export default function CalendlyBookingSection() {
             <div
               className="calendly-inline-widget w-full h-[1189px] sm:h-[1050px] md:h-[700px] lg:h-[680px]"
               data-url={calendlyUrl}
-              data-resize={isMobile ? 'true' : undefined}
-              style={{ height: isMobile ? `${mobileIframeHeight}px` : undefined }}
+              style={{ height: isMobile ? `${mobileCalendlyHeight}px` : undefined, minHeight: isMobile ? `${mobileCalendlyHeight}px` : undefined }}
             />
           </div>
         </div>
