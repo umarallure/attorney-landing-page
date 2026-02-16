@@ -1,8 +1,11 @@
+import VideoCarouselSection from './VideoCarouselSection';
+
 export default function WhyAccidentPaymentsSection() {
   return (
     <section className="bg-[#f3f3f3] py-12 sm:py-16" id="why-accident-payments">
+      <VideoCarouselSection />
       <div className="mx-auto w-[min(1200px,94vw)] px-4 text-center">
-        <div className="flex items-baseline justify-center gap-2">
+        <div className="flex items-baseline justify-center gap-2 mt-4 lg:mt-16">
           <h3 className="text-2xl lg:text-4xl font-medium text-brand">Why</h3>
           <h2 className="text-2xl lg:text-4xl font-bold text-[#111]">
             <span className="text-brand">Accident Payments?</span>

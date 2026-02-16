@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { ChevronLeft, ChevronRight, Volume2, VolumeX } from 'lucide-react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 
 export default function CalendlyBookingSection() {
   const calendlyUrl = useMemo(
@@ -10,210 +10,24 @@ export default function CalendlyBookingSection() {
 
   const [mobileIframeHeight, setMobileIframeHeight] = useState<number>(1189);
   const [isMobile, setIsMobile] = useState(false);
+  const dashboardRef = useRef<HTMLDivElement>(null);
+  const mobileDashboardRef = useRef<HTMLDivElement>(null);
+  const [dashboardLift, setDashboardLift] = useState(60);
+  const [dashboardTilt, setDashboardTilt] = useState(12);
+  const [cardLift, setCardLift] = useState(0);
 
-  const videos = useMemo(() => [
-    '/assets/videos/Video-For-GetSignedCases.mp4',
-    '/assets/videos/Intro-for-Landing-Page.mp4',
-  ], []);
-
-  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
-  const videoSectionRef = useRef<HTMLDivElement>(null);
-  const hasStartedRef = useRef(false);
-  const touchStartX = useRef<number>(0);
-  const touchStartY = useRef<number>(0);
-  const swipeDirection = useRef<'horizontal' | 'vertical' | null>(null);
-  const [dragOffset, setDragOffset] = useState(0);
-  const isDragging = useRef(false);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isMuted, setIsMuted] = useState(false);
-  const [showSwipeHint, setShowSwipeHint] = useState(false);
-  const [isSliding, setIsSliding] = useState(false);
-  const [slideDirection, setSlideDirection] = useState<'left' | 'right'>('left');
-
-  const [pendingIndex, setPendingIndex] = useState<number | null>(null);
-
-  const slideTo = useCallback((nextIndex: number, direction: 'left' | 'right') => {
-    if (isSliding || nextIndex === activeIndex) return;
-    setSlideDirection(direction);
-    setPendingIndex(nextIndex);
-
-    const currentVideo = videoRefs.current[activeIndex];
-    if (currentVideo) {
-      currentVideo.pause();
-      currentVideo.currentTime = 0;
-    }
-
-    // Allow one frame for the incoming slide to be placed off-screen, then trigger animation
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        setIsSliding(true);
-        setTimeout(() => {
-          setActiveIndex(nextIndex);
-          setPendingIndex(null);
-          setIsSliding(false);
-        }, 420);
-      });
-    });
-  }, [isSliding, activeIndex]);
-
-  const goNext = useCallback(() => {
-    const next = (activeIndex + 1) % videos.length;
-    slideTo(next, 'left');
-  }, [activeIndex, videos.length, slideTo]);
-
-  const goPrev = useCallback(() => {
-    const prev = (activeIndex - 1 + videos.length) % videos.length;
-    slideTo(prev, 'right');
-  }, [activeIndex, videos.length, slideTo]);
-
-  // When activeIndex changes (via arrows or auto-advance), play the new video
-  useEffect(() => {
-    if (!hasStartedRef.current) return;
-    const video = videoRefs.current[activeIndex];
-    if (!video) return;
-
-    video.currentTime = 0;
-    video.muted = isMuted;
-    const playPromise = video.play();
-    if (playPromise !== undefined) {
-      playPromise.catch(() => {
-        video.muted = true;
-        setIsMuted(true);
-        video.play().catch(() => {});
-      });
-    }
-  }, [activeIndex]);
-
-  // Only start playing when the video section scrolls into view
-  useEffect(() => {
-    const section = videoSectionRef.current;
-    if (!section) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasStartedRef.current) {
-          hasStartedRef.current = true;
-          const video = videoRefs.current[0];
-          if (!video) return;
-
-          video.currentTime = 0;
-          video.muted = false;
-          setIsMuted(false);
-          const playPromise = video.play();
-          if (playPromise !== undefined) {
-            playPromise.catch(() => {
-              video.muted = true;
-              setIsMuted(true);
-              video.play().catch(() => {});
-            });
-          }
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    observer.observe(section);
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    const video = videoRefs.current[activeIndex];
-    if (!video) return;
-
-    const handleEnded = () => goNext();
-    video.addEventListener('ended', handleEnded);
-    return () => video.removeEventListener('ended', handleEnded);
-  }, [activeIndex, goNext]);
-
-  const toggleMute = useCallback(() => {
-    const video = videoRefs.current[activeIndex];
-    if (!video) return;
-    video.muted = !video.muted;
-    setIsMuted(video.muted);
-  }, [activeIndex]);
-
-  // Drag-responsive touch swipe handlers
-  const handleTouchStart = useCallback((e: React.TouchEvent) => {
-    if (isSliding) return;
-    touchStartX.current = e.touches[0].clientX;
-    touchStartY.current = e.touches[0].clientY;
-    swipeDirection.current = null;
-    isDragging.current = true;
-    setShowSwipeHint(false);
-  }, [isSliding]);
-
-  const handleTouchMove = useCallback((e: React.TouchEvent) => {
-    if (!isDragging.current) return;
-
-    const dx = e.touches[0].clientX - touchStartX.current;
-    const dy = e.touches[0].clientY - touchStartY.current;
-
-    // Lock direction after 10px of movement
-    if (swipeDirection.current === null && (Math.abs(dx) > 10 || Math.abs(dy) > 10)) {
-      swipeDirection.current = Math.abs(dx) > Math.abs(dy) ? 'horizontal' : 'vertical';
-    }
-
-    // If vertical, let the page scroll normally
-    if (swipeDirection.current === 'vertical') {
-      isDragging.current = false;
-      setDragOffset(0);
-      return;
-    }
-
-    // If horizontal, prevent page scroll and track drag
-    if (swipeDirection.current === 'horizontal') {
-      e.preventDefault();
-      setDragOffset(dx);
-    }
-  }, []);
-
-  const handleTouchEnd = useCallback(() => {
-    if (!isDragging.current || swipeDirection.current !== 'horizontal') {
-      isDragging.current = false;
-      swipeDirection.current = null;
-      setDragOffset(0);
-      return;
-    }
-
-    const offset = dragOffset;
-    isDragging.current = false;
-    swipeDirection.current = null;
-    setDragOffset(0);
-
-    // Snap threshold: 25% of container width
-    const containerWidth = videoSectionRef.current?.offsetWidth ?? 400;
-    const snapThreshold = containerWidth * 0.25;
-
-    if (offset < -snapThreshold) {
-      goNext();
-    } else if (offset > snapThreshold) {
-      goPrev();
-    }
-  }, [dragOffset, goNext, goPrev]);
-
-  // Show swipe hint on mobile when video section comes into view
-  useEffect(() => {
-    const isTouchDevice = window.matchMedia('(max-width: 639px)').matches;
-    if (!isTouchDevice) return;
-
-    const section = videoSectionRef.current;
-    if (!section) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setShowSwipeHint(true);
-          setTimeout(() => setShowSwipeHint(false), 3000);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    observer.observe(section);
-    return () => observer.disconnect();
-  }, []);
+  const { scrollYProgress: mobileScrollProgress } = useScroll({
+    target: mobileDashboardRef,
+    offset: ['start 0.95', 'end 0.2'],
+  });
+  const mobileProgress = useSpring(mobileScrollProgress, {
+    stiffness: 120,
+    damping: 26,
+    mass: 0.9,
+  });
+  const mobileDashboardY = useTransform(mobileProgress, [0, 1], [60, 0]);
+  const mobileCardDown = useTransform(mobileProgress, [0, 1], [0, 350]);
+  const mobileCardUp = useTransform(mobileProgress, [0, 1], [0, -350]);
 
   useEffect(() => {
     const updateIsMobile = () => {
@@ -227,6 +41,39 @@ export default function CalendlyBookingSection() {
       window.removeEventListener('resize', updateIsMobile);
     };
   }, []);
+
+  useEffect(() => {
+    if (isMobile) return;
+    const element = dashboardRef.current;
+    if (!element) return;
+
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const rect = element.getBoundingClientRect();
+      const viewportHeight = window.innerHeight || 800;
+      const start = viewportHeight * 0.9;
+      const end = viewportHeight * 0.25;
+      const progress = Math.min(1, Math.max(0, (start - rect.top) / (start - end)));
+      setDashboardLift(60 - progress * 60);
+      setDashboardTilt(12 - progress * 12);
+      setCardLift(-20 + progress * 60);
+    };
+
+    const onScroll = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, [isMobile]);
 
   useEffect(() => {
     const existing = document.querySelector('script[src="https://assets.calendly.com/assets/external/widget.js"]');
@@ -319,8 +166,8 @@ export default function CalendlyBookingSection() {
           </div>
         </div>
 
-        {/* Content Section - Seamless Video */}
-        <div ref={videoSectionRef} className="relative mt-12">
+        {/* Content Section */}
+        <div className="relative mt-12">
           <div className="mx-auto max-w-[1100px] px-4 sm:px-12 pt-8 sm:pt-12 text-center">
             <h2 className="text-2xl lg:text-4xl font-bold leading-[1.1] text-brand">
               Cases Qualified, Signed, and Delivered.
@@ -330,137 +177,59 @@ export default function CalendlyBookingSection() {
             </p>
           </div>
 
-          <div className="relative mt-8 mx-auto w-[min(1100px,94vw)]">
-            <div className="grid grid-cols-1 sm:grid-cols-[5%_90%_5%] items-center">
-              {/* Left arrow - hidden on mobile */}
-              <div className="hidden sm:flex items-center justify-center">
-                <button
-                  onClick={goPrev}
-                  className="flex h-11 w-11 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-sm border border-white/20 transition-all hover:bg-brand hover:border-brand hover:scale-110 shadow-lg"
-                  aria-label="Previous video"
-                >
-                  <ChevronLeft className="h-5 w-5" strokeWidth={2.5} />
-                </button>
-              </div>
-
-              {/* Carousel container */}
-              <div
-                className="relative w-full overflow-hidden rounded-[16px]"
-                style={{ aspectRatio: '16/9', maxHeight: '70vh', touchAction: 'pan-y' }}
-                onTouchStart={handleTouchStart}
-                onTouchMove={handleTouchMove}
-                onTouchEnd={handleTouchEnd}
-              >
-                <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-24 bg-gradient-to-b from-[#1a1a1a] to-transparent" />
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-24 bg-gradient-to-t from-[#1a1a1a] to-transparent" />
-
-                {/* Sliding track */}
-                {videos.map((src, i) => {
-                  const isActive = i === activeIndex;
-                  const isPending = i === pendingIndex;
-                  const isDragActive = dragOffset !== 0 && !isSliding;
-                  const nextIdx = (activeIndex + 1) % videos.length;
-                  const prevIdx = (activeIndex - 1 + videos.length) % videos.length;
-                  const isDragPeek = isDragActive && (i === nextIdx || i === prevIdx);
-                  const isVisible = isActive || isPending || isDragPeek;
-
-                  let transform = 'translateX(100%)';
-                  if (isActive && !isSliding) {
-                    transform = `translateX(${dragOffset}px)`;
-                  } else if (isActive && isSliding) {
-                    transform = slideDirection === 'left' ? 'translateX(-100%)' : 'translateX(100%)';
-                  } else if (isPending && !isSliding) {
-                    transform = slideDirection === 'left' ? 'translateX(100%)' : 'translateX(-100%)';
-                  } else if (isPending && isSliding) {
-                    transform = 'translateX(0)';
-                  } else if (isDragActive && i === nextIdx) {
-                    transform = `translateX(calc(100% + ${dragOffset}px))`;
-                  } else if (isDragActive && i === prevIdx) {
-                    transform = `translateX(calc(-100% + ${dragOffset}px))`;
-                  }
-
-                  const useTransition = isSliding && !isDragActive;
-
-                  return (
-                    <div
-                      key={src}
-                      className={`absolute inset-0 ${
-                        useTransition ? 'transition-transform duration-[400ms] ease-in-out' : ''
-                      }`}
-                      style={{
-                        transform,
-                        visibility: isVisible ? 'visible' : 'hidden',
-                      }}
-                    >
-                      <video
-                        ref={(el) => { videoRefs.current[i] = el; }}
-                        className="absolute inset-0 h-full w-full object-cover"
-                        preload={i === 0 ? 'auto' : 'metadata'}
-                        playsInline
-                        {...(i === 0 ? { fetchpriority: 'high' } as Record<string, string> : {})}
-                      >
-                        <source src={src} type="video/mp4" />
-                      </video>
-                    </div>
-                  );
-                })}
-
-                {/* Mute / Unmute button */}
-                {isMuted ? (
-                  <button
-                    onClick={toggleMute}
-                    className="absolute bottom-6 right-6 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-sm transition hover:bg-black/70"
-                    aria-label="Unmute video"
-                  >
-                    <VolumeX className="h-5 w-5" />
-                  </button>
-                ) : (
-                  <button
-                    onClick={toggleMute}
-                    className="absolute bottom-6 right-6 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-sm transition hover:bg-black/70 opacity-0 hover:opacity-100"
-                    aria-label="Mute video"
-                  >
-                    <Volume2 className="h-5 w-5" />
-                  </button>
-                )}
-              </div>
-
-              {/* Right arrow - hidden on mobile */}
-              <div className="hidden sm:flex items-center justify-center">
-                <button
-                  onClick={goNext}
-                  className="flex h-11 w-11 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-sm border border-white/20 transition-all hover:bg-brand hover:border-brand hover:scale-110 shadow-lg"
-                  aria-label="Next video"
-                >
-                  <ChevronRight className="h-5 w-5" strokeWidth={2.5} />
-                </button>
-              </div>
+          <div ref={mobileDashboardRef} className="mx-auto mt-8 w-full max-w-[520px] px-6 sm:hidden">
+            <div className="relative">
+              <motion.img
+                src="/assets/Dashboard-Mobile.png"
+                alt="Accident Payments dashboard preview"
+                className="block w-full"
+                style={{ y: mobileDashboardY }}
+              />
+              <motion.img
+                src="/assets/invoice-card-mobile.png"
+                alt="Intake map card"
+                className="pointer-events-none absolute right-[-6%] top-[8%] w-[200px] max-w-[58%] drop-shadow-[0_16px_28px_rgba(0,0,0,0.35)]"
+                style={{ y: mobileCardDown }}
+              />
+              <motion.img
+                src="/assets/map-card-mobile.png"
+                alt="Invoice summary card"
+                className="pointer-events-none absolute bottom-[-1%] left-[-4%] w-[220px] max-w-[58%] drop-shadow-[0_16px_28px_rgba(0,0,0,0.35)]"
+                style={{ y: mobileCardUp }}
+              />
             </div>
+          </div>
 
-            {/* Dot indicators */}
-            <div className="mt-5 flex items-center justify-center gap-2.5">
-              {videos.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => slideTo(i, i > activeIndex ? 'left' : 'right')}
-                  className={`h-2.5 rounded-full transition-all duration-300 ${
-                    i === activeIndex
-                      ? 'w-8 bg-brand'
-                      : 'w-2.5 bg-white/30 hover:bg-white/50'
-                  }`}
-                  aria-label={`Go to video ${i + 1}`}
-                />
-              ))}
+          <div
+            ref={dashboardRef}
+            className="mx-auto mt-8 hidden w-full max-w-[1500px] sm:block md:px-12"
+          >
+            <div className="relative">
+              <img
+                src="/assets/Dashboard-Desktop.png"
+                alt="Accident Payments dashboard preview"
+                className="block w-full"
+                style={{
+                  transform: `perspective(1000px) translateY(${dashboardLift}px) rotateX(${dashboardTilt}deg)`,
+                  transition: 'transform 0.2s ease-out',
+                  transformStyle: 'preserve-3d',
+                }}
+              />
+              <img
+                src="/assets/invoice-card-desktop.png"
+                alt="Intake map card"
+                className="pointer-events-none absolute right-[-20%] top-[-15%] w-[960px] max-w-[100%] drop-shadow-[0_20px_34px_rgba(0,0,0,0.35)]"
+                style={{
+                  transform: `translateY(${cardLift}px)`,
+                  transition: 'transform 0.2s ease-out',
+                }}
+              />
+              <img
+                src="/assets/map-card-desktop.png"
+                alt="Invoice summary card"
+                className="pointer-events-none absolute bottom-[15%] left-[0%] w-[960px] max-w-[33%] drop-shadow-[0_20px_34px_rgba(0,0,0,0.35)]"
+              />
             </div>
-
-            {/* Swipe hint - mobile only */}
-            {showSwipeHint && (
-              <div className="sm:hidden mt-3 flex items-center justify-center gap-1.5 text-white/40 text-xs animate-pulse">
-                <ChevronLeft className="h-3.5 w-3.5" />
-                <span>Swipe to navigate</span>
-                <ChevronRight className="h-3.5 w-3.5" />
-              </div>
-            )}
           </div>
 
           <div className="mx-auto max-w-[1100px] px-4 sm:px-12 pt-8 pb-8 sm:pb-12 text-center">
