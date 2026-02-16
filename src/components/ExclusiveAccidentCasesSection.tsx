@@ -1,13 +1,21 @@
+import Image from 'next/image';
+import { useLazyBackground } from '@/hooks/useLazyBackground';
+
 export default function ExclusiveAccidentCasesSection() {
+  const { elementRef, loaded } = useLazyBackground('/assets/White-BG.png');
+
   return (
     <section
+      ref={elementRef}
       className="relative py-12 sm:py-16"
       id="exclusive-accident-cases"
       style={{
-        backgroundImage: 'url(/assets/White-BG.png)',
+        backgroundImage: loaded ? 'url(/assets/White-BG.png)' : 'none',
+        backgroundColor: loaded ? 'transparent' : '#f3f3f3',
         backgroundRepeat: 'no-repeat',
         backgroundSize: '100% 140%',
         backgroundPosition: 'top center',
+        transition: 'background-image 0.3s ease-in-out',
       }}
     >
       <div className="mx-auto w-[min(1200px,94vw)] px-4">
@@ -40,10 +48,13 @@ export default function ExclusiveAccidentCasesSection() {
 
         <div className="mt-12 sm:mt-14">
           <div className="relative mx-auto w-full max-w-[1100px] overflow-hidden rounded-[20px] sm:rounded-[22px]">
-            <img
+            <Image
               src="/assets/Man.png"
               alt="Ready to start receiving exclusive accident cases"
+              width={1100}
+              height={360}
               className="w-full h-[360px] object-cover object-[50%_18%] sm:h-auto sm:object-contain"
+              loading="lazy"
             />
 
             <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center translate-y-6 sm:translate-y-10">

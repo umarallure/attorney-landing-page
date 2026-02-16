@@ -409,10 +409,10 @@ export default function VideoCarouselSection() {
                           videoRefs.current[i] = el;
                         }}
                         className="w-full h-full object-cover"
-                        preload="metadata"
+                        preload={i === 0 ? "metadata" : "none"}
                         playsInline
                         muted={!isActive || isMuted}
-                        poster={!isActive ? posterUrl ?? undefined : undefined}
+                        poster={posterUrl ?? undefined}
                         onEnded={isActive ? goNext : undefined}
                         onCanPlayThrough={i === 0 ? () => loadRemainingVideos() : undefined}
                         {...(i === 0 ? { fetchpriority: 'high' } as Record<string, string> : {})}

@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import VideoCarouselSection from './VideoCarouselSection';
 
 export default function WhyAccidentPaymentsSection() {
@@ -17,19 +18,19 @@ export default function WhyAccidentPaymentsSection() {
 
         <div className="mt-10 grid grid-cols-1 gap-2 sm:grid-cols-3 sm:gap-4">
           <div className="flex flex-col items-center">
-            <img src="/assets/1.png" alt="Exclusive lead delivery" className="h-24 w-auto sm:h-28" />
+            <Image src="/assets/1.png" alt="Exclusive lead delivery" width={112} height={112} className="h-24 w-auto sm:h-28" loading="lazy" />
             <p className="mt-2 text-lg font-bold tracking-wide text-brand">EXCLUSIVE</p>
             <p className="text-2xl sm:text-3xl font-bold text-brand">SALES TEAM</p>
           </div>
 
           <div className="flex flex-col items-center">
-            <img src="/assets/2.png" alt="Fast follow-up system" className="h-24 w-auto sm:h-28" />
+            <Image src="/assets/2.png" alt="Fast follow-up system" width={112} height={112} className="h-24 w-auto sm:h-28" loading="lazy" />
             <p className="mt-2 text-lg font-extrabold tracking-wide text-brand">CUSTOMIZED</p>
             <p className="text-2xl sm:text-3xl font-extrabold text-brand">CASE DELIVERY</p>
           </div>
 
           <div className="flex flex-col items-center">
-            <img src="/assets/3.png" alt="Premium case quality" className="h-24 w-auto sm:h-28" />
+            <Image src="/assets/3.png" alt="Premium case quality" width={112} height={112} className="h-24 w-auto sm:h-28" loading="lazy" />
             <p className="mt-2 text-lg font-extrabold tracking-wide text-brand">EXCLUSIVE PREMIUM</p>
             <p className="text-2xl sm:text-3xl font-extrabold text-brand">CASE QUALITY</p>
           </div>

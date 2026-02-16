@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
+import { LazyMotion, domAnimation, m, useScroll, useSpring, useTransform } from 'framer-motion';
+import Image from 'next/image';
 
 export default function CalendlyBookingSection() {
   const calendlyUrl = useMemo(
@@ -15,6 +16,8 @@ export default function CalendlyBookingSection() {
   const [dashboardLift, setDashboardLift] = useState(60);
   const [dashboardTilt, setDashboardTilt] = useState(12);
   const [cardLift, setCardLift] = useState(0);
+  const [shouldLoadCalendly, setShouldLoadCalendly] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
 
   const { scrollYProgress: mobileScrollProgress } = useScroll({
     target: mobileDashboardRef,
@@ -76,6 +79,26 @@ export default function CalendlyBookingSection() {
   }, [isMobile]);
 
   useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoadCalendly(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '200px' }
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!shouldLoadCalendly) return;
+    
     const existing = document.querySelector('script[src="https://assets.calendly.com/assets/external/widget.js"]');
     if (!existing) {
       const script = document.createElement('script');
@@ -83,7 +106,7 @@ export default function CalendlyBookingSection() {
       script.async = true;
       document.body.appendChild(script);
     }
-  }, []);
+  }, [shouldLoadCalendly]);
 
   useEffect(() => {
     if (!isMobile) return;
@@ -123,16 +146,18 @@ export default function CalendlyBookingSection() {
   }, [isMobile]);
 
   return (
-    <section 
-      className="relative py-12 sm:py-16 md:py-20" 
-      id="booking"
-      style={{
-        backgroundImage: 'url(/assets/background-bg-black.png)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
-    >
-      <div className="relative z-10 mx-auto w-[min(1400px,94vw)]">
+    <LazyMotion features={domAnimation}>
+      <section 
+        ref={sectionRef}
+        className="relative py-12 sm:py-16 md:py-20" 
+        id="booking"
+        style={{
+          backgroundImage: 'url(/assets/background-bg-black.png)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        <div className="relative z-10 mx-auto w-[min(1400px,94vw)]">
           <div className="mb-0 sm:mb-20">
             <div className="mx-auto max-w-[1100px] text-center">
               <p className="text-[24px] sm:text-[32px] lg:text-[48px] font-extrabold leading-[1.05] text-brand">
@@ -144,10 +169,13 @@ export default function CalendlyBookingSection() {
 
               <div className="mt-8 flex justify-center sm:justify-end relative">
                 <div className="hidden lg:block absolute right-[850px] top-[-120px] w-[100px] xl:w-[150px] z-20 pointer-events-none">
-                  <img
+                  <Image
                     src="/assets/curved-arrow-png-9.png"
                     alt="Arrow pointing upward to Calendly"
+                    width={150}
+                    height={150}
                     className="w-full h-auto rotate-45"
+                    priority
                   />
                 </div>
               </div>
@@ -179,24 +207,41 @@ export default function CalendlyBookingSection() {
 
           <div ref={mobileDashboardRef} className="mx-auto mt-8 w-full max-w-[520px] px-6 sm:hidden">
             <div className="relative">
-              <motion.img
-                src="/assets/Dashboard-Mobile.png"
-                alt="Accident Payments dashboard preview"
-                className="block w-full"
-                style={{ y: mobileDashboardY }}
-              />
-              <motion.img
-                src="/assets/invoice-card-mobile.png"
-                alt="Intake map card"
+              <m.div style={{ y: mobileDashboardY }}>
+                <Image
+                  src="/assets/Dashboard-Mobile.png"
+                  alt="Accident Payments dashboard preview"
+                  width={520}
+                  height={400}
+                  className="block w-full"
+                  priority
+                  fetchPriority="high"
+                />
+              </m.div>
+              <m.div 
                 className="pointer-events-none absolute right-[-6%] top-[8%] w-[200px] max-w-[58%] drop-shadow-[0_16px_28px_rgba(0,0,0,0.35)]"
                 style={{ y: mobileCardDown }}
-              />
-              <motion.img
-                src="/assets/map-card-mobile.png"
-                alt="Invoice summary card"
+              >
+                <Image
+                  src="/assets/invoice-card-mobile.png"
+                  alt="Intake map card"
+                  width={200}
+                  height={150}
+                  loading="lazy"
+                />
+              </m.div>
+              <m.div
                 className="pointer-events-none absolute bottom-[-1%] left-[-4%] w-[220px] max-w-[58%] drop-shadow-[0_16px_28px_rgba(0,0,0,0.35)]"
                 style={{ y: mobileCardUp }}
-              />
+              >
+                <Image
+                  src="/assets/map-card-mobile.png"
+                  alt="Invoice summary card"
+                  width={220}
+                  height={150}
+                  loading="lazy"
+                />
+              </m.div>
             </div>
           </div>
 
@@ -205,30 +250,47 @@ export default function CalendlyBookingSection() {
             className="mx-auto mt-8 hidden w-full max-w-[1500px] sm:block md:px-12"
           >
             <div className="relative">
-              <img
-                src="/assets/Dashboard-Desktop.png"
-                alt="Accident Payments dashboard preview"
-                className="block w-full"
+              <div
                 style={{
                   transform: `perspective(1000px) translateY(${dashboardLift}px) rotateX(${dashboardTilt}deg)`,
                   transition: 'transform 0.2s ease-out',
                   transformStyle: 'preserve-3d',
                 }}
-              />
-              <img
-                src="/assets/invoice-card-desktop.png"
-                alt="Intake map card"
+              >
+                <Image
+                  src="/assets/Dashboard-Desktop.png"
+                  alt="Accident Payments dashboard preview"
+                  width={1500}
+                  height={900}
+                  className="block w-full"
+                  priority
+                  fetchPriority="high"
+                />
+              </div>
+              <div
                 className="pointer-events-none absolute right-[-20%] top-[-15%] w-[960px] max-w-[100%] drop-shadow-[0_20px_34px_rgba(0,0,0,0.35)]"
                 style={{
                   transform: `translateY(${cardLift}px)`,
                   transition: 'transform 0.2s ease-out',
                 }}
-              />
-              <img
-                src="/assets/map-card-desktop.png"
-                alt="Invoice summary card"
-                className="pointer-events-none absolute bottom-[15%] left-[0%] w-[960px] max-w-[33%] drop-shadow-[0_20px_34px_rgba(0,0,0,0.35)]"
-              />
+              >
+                <Image
+                  src="/assets/invoice-card-desktop.png"
+                  alt="Intake map card"
+                  width={960}
+                  height={600}
+                  loading="lazy"
+                />
+              </div>
+              <div className="pointer-events-none absolute bottom-[15%] left-[0%] w-[960px] max-w-[33%] drop-shadow-[0_20px_34px_rgba(0,0,0,0.35)]">
+                <Image
+                  src="/assets/map-card-desktop.png"
+                  alt="Invoice summary card"
+                  width={960}
+                  height={600}
+                  loading="lazy"
+                />
+              </div>
             </div>
           </div>
 
@@ -243,5 +305,6 @@ export default function CalendlyBookingSection() {
         </div>
       </div>
     </section>
+  </LazyMotion>
   );
 }

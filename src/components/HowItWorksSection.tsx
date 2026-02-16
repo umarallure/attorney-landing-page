@@ -1,13 +1,20 @@
+import { useLazyBackground } from '@/hooks/useLazyBackground';
+
 export default function HowItWorksSection() {
+  const { elementRef, loaded } = useLazyBackground('/assets/Orange-BG.png');
+
   return (
     <section
+      ref={elementRef}
       className="relative py-12 sm:py-16"
       id="how-it-works"
       style={{
-        backgroundImage: 'url(/assets/Orange-BG.png)',
+        backgroundImage: loaded ? 'url(/assets/Orange-BG.png)' : 'none',
+        backgroundColor: loaded ? 'transparent' : '#cc3f08',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
         backgroundPosition: 'top center',
+        transition: 'background-image 0.3s ease-in-out',
       }}
     >
       <div className="mx-auto w-[min(1200px,94vw)] px-4 text-center">

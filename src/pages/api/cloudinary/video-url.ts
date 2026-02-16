@@ -24,6 +24,12 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Data>)
     resource_type: 'video',
     type: 'upload',
     secure: true,
+    transformation: [
+      {
+        quality: 'auto:good',
+        fetch_format: 'auto',
+      },
+    ],
   });
 
   res.status(200).json({ url });

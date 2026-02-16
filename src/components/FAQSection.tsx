@@ -1,3 +1,5 @@
+import { useLazyBackground } from '@/hooks/useLazyBackground';
+
 type FaqItem = {
   q: string;
   a: string;
@@ -19,14 +21,19 @@ const faqs: FaqItem[] = [
 ];
 
 export default function FAQSection() {
+  const { elementRef, loaded } = useLazyBackground('/assets/background-bg-black.png');
+
   return (
     <section
+      ref={elementRef}
       className="relative py-12 sm:py-16"
       id="faq"
       style={{
-        backgroundImage: 'url(/assets/background-bg-black.png)',
+        backgroundImage: loaded ? 'url(/assets/background-bg-black.png)' : 'none',
+        backgroundColor: loaded ? 'transparent' : '#202020',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
+        transition: 'background-image 0.3s ease-in-out',
       }}
     >
       <div className="mx-auto w-[min(1200px,94vw)] px-4">
