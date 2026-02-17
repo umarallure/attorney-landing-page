@@ -10,7 +10,7 @@ export default function CalendlyBookingSection() {
   );
 
   const [isMobile, setIsMobile] = useState(false);
-  const [mobileIframeHeight, setMobileIframeHeight] = useState(1200);
+  const [mobileIframeHeight, setMobileIframeHeight] = useState(1189);
   const dashboardRef = useRef<HTMLDivElement>(null);
   const mobileDashboardRef = useRef<HTMLDivElement>(null);
   const [dashboardLift, setDashboardLift] = useState(60);
