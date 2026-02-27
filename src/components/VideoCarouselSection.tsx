@@ -140,19 +140,26 @@ export default function VideoCarouselSection() {
   }, []);
 
   const fetchVideoUrl = useCallback(async (publicId: string) => {
-    // Check cache first
-    const cacheKey = `cloudinary_video_${publicId}`;
+    const CACHE_VERSION = 'v2';
+    const cacheKey = `cloudinary_video_${CACHE_VERSION}_${publicId}`;
     const cached = sessionStorage.getItem(cacheKey);
     if (cached) {
       return cached;
     }
 
-    // Fetch from API if not cached
-    const response = await fetch(`/api/cloudinary/video-url?publicId=${encodeURIComponent(publicId)}`);
+    const response = await fetch(
+      `/api/cloudinary/video-url?publicId=${encodeURIComponent(publicId)}`
+    );
+    if (!response.ok) {
+      const text = await response.text().catch(() => '');
+      throw new Error(
+        `Failed to fetch video URL for ${publicId}. Status: ${response.status}. Body: ${text}`
+      );
+    }
+
     const data = (await response.json()) as { url?: string };
     const url = data.url ?? null;
     
-    // Cache the URL
     if (url) {
       sessionStorage.setItem(cacheKey, url);
     }
