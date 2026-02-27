@@ -2,11 +2,16 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { LazyMotion, domAnimation, m, useScroll, useSpring, useTransform } from 'framer-motion';
 import Image from 'next/image';
 
-export default function CalendlyBookingSection() {
-  const calendlyUrl = useMemo(
+type CalendlyBookingSectionProps = {
+  calendlyUrl?: string;
+};
+
+export default function CalendlyBookingSection({ calendlyUrl }: CalendlyBookingSectionProps) {
+  const resolvedCalendlyUrl = useMemo(
     () =>
+      calendlyUrl ??
       'https://calendly.com/d/cygc-tzm-3dz/motor-vehicle-accident-cases?hide_gdpr_banner=1&background_color=202020&text_color=DADADA&primary_color=CC3F08',
-    []
+    [calendlyUrl]
   );
 
   const [isMobile, setIsMobile] = useState(false);
@@ -188,7 +193,7 @@ export default function CalendlyBookingSection() {
           <div className="w-full overflow-hidden rounded-smooth bg-[#202020] shadow-[0_18px_50px_rgba(0,0,0,0.35)]">
             <div
               className="calendly-inline-widget w-full h-[1189px] sm:h-[1050px] md:h-[700px] lg:h-[680px]"
-              data-url={calendlyUrl}
+              data-url={resolvedCalendlyUrl}
               data-resize={isMobile ? 'true' : undefined}
               style={{ height: isMobile ? `${mobileIframeHeight}px` : undefined, minHeight: isMobile ? '900px' : undefined }}
             />
