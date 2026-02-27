@@ -5,7 +5,7 @@ import Image from 'next/image';
 export default function CalendlyBookingSection() {
   const calendlyUrl = useMemo(
     () =>
-      'https://calendly.com/accidentpayments/mva?hide_gdpr_banner=1&background_color=202020&text_color=DADADA&primary_color=CC3F08',
+      'https://calendly.com/d/cygc-tzm-3dz/motor-vehicle-accident-cases?hide_gdpr_banner=1&background_color=202020&text_color=DADADA&primary_color=CC3F08',
     []
   );
 
