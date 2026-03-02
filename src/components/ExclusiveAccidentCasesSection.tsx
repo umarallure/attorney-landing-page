@@ -75,6 +75,38 @@ export default function ExclusiveAccidentCasesSection() {
         </div>
 
         <div className="mt-12 sm:mt-14 text-center">
+          <p className="text-[clamp(18px,3.2vw,30px)] font-extrabold text-brand">Our Case Quality Guarantee</p>
+          <p className="mt-2 text-[clamp(14px,2.2vw,18px)] font-medium text-[#444]">
+            Built-in protection to eliminate your outsourcing risk.
+          </p>
+
+          <div className="mx-auto mt-8 w-full max-w-[860px]">
+            <div className="grid grid-cols-1 gap-4 text-left">
+              <div className="flex items-center gap-4">
+                <img src="/assets/10.png" alt="" className="h-10 w-10 object-contain" aria-hidden="true" loading="lazy" />
+                <p className="text-[clamp(16px,2.3vw,20px)] font-medium text-[#1b1b1b]">Exclusive to your firm</p>
+              </div>
+              <div className="flex items-center gap-4">
+                <img src="/assets/10.png" alt="" className="h-10 w-10 object-contain" aria-hidden="true" loading="lazy" />
+                <p className="text-[clamp(16px,2.3vw,20px)] font-medium text-[#1b1b1b]">Signed retainer agreement before delivery</p>
+              </div>
+              <div className="flex items-center gap-4">
+                <img src="/assets/10.png" alt="" className="h-10 w-10 object-contain" aria-hidden="true" loading="lazy" />
+                <p className="text-[clamp(16px,2.3vw,20px)] font-medium text-[#1b1b1b]">Pre-qualified based on your exact criteria</p>
+              </div>
+              <div className="flex items-center gap-4">
+                <img src="/assets/10.png" alt="" className="h-10 w-10 object-contain" aria-hidden="true" loading="lazy" />
+                <p className="text-[clamp(16px,2.3vw,20px)] font-medium text-[#1b1b1b]">Multi-step verification process</p>
+              </div>
+              <div className="flex items-center gap-4">
+                <img src="/assets/10.png" alt="" className="h-10 w-10 object-contain" aria-hidden="true" loading="lazy" />
+                <p className="text-[clamp(16px,2.3vw,20px)] font-medium text-[#1b1b1b]">Replacement policy if agreed criteria are not met</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-12 sm:mt-14 text-center">
           <p className="text-[clamp(18px,3vw,28px)] font-medium text-[#1b1b1b]">Our Testimonials</p>
           <p className="mt-2 text-[clamp(18px,3.2vw,30px)] font-extrabold text-brand">
             WHAT PEOPLE ARE SAYING ABOUT US
@@ -119,7 +151,7 @@ export default function ExclusiveAccidentCasesSection() {
               </a>
 
               <a
-                className="mt-3 inline-flex items-center justify-center gap-2 rounded-pill border border-brand bg-transparent px-8 py-3 text-[14px] sm:text-[16px] font-semibold text-brand transition hover:-translate-y-[1px] hover:bg-white/5"
+                className="mt-3 inline-flex items-center justify-center gap-2 rounded-pill border border-brand bg-[#f3f3f3] px-8 py-3 text-[14px] sm:text-[16px] font-semibold text-brand transition hover:-translate-y-[1px] hover:bg-[#e9e9e9]"
                 href="/sales"
               >
                 <Info className="h-4 w-4 sm:h-[18px] sm:w-[18px]" aria-hidden="true" />

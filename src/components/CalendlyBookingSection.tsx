@@ -311,7 +311,7 @@ export default function CalendlyBookingSection({ calendlyUrl }: CalendlyBookingS
               </a>
 
               <a
-                className="mt-3 inline-flex items-center justify-center gap-2 rounded-pill border border-brand bg-transparent px-8 py-3 text-[14px] sm:text-[16px] font-semibold text-brand transition hover:-translate-y-[1px] hover:bg-white/5"
+                className="mt-3 inline-flex items-center justify-center gap-2 rounded-pill border border-brand bg-[#f3f3f3] px-8 py-3 text-[14px] sm:text-[16px] font-semibold text-brand transition hover:-translate-y-[1px] hover:bg-[#e9e9e9]"
                 href="/sales"
               >
                 <Info className="h-4 w-4 sm:h-[18px] sm:w-[18px]" aria-hidden="true" />

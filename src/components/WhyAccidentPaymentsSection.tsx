@@ -51,12 +51,94 @@ export default function WhyAccidentPaymentsSection() {
             </a>
 
             <a
-              className="mt-3 inline-flex items-center justify-center gap-2 rounded-pill border border-brand bg-transparent px-8 py-3 text-[14px] sm:text-[16px] font-semibold text-brand transition hover:-translate-y-[1px] hover:bg-white/5"
+              className="mt-3 inline-flex items-center justify-center gap-2 rounded-pill border border-brand bg-[#f3f3f3] px-8 py-3 text-[14px] sm:text-[16px] font-semibold text-brand transition hover:-translate-y-[1px] hover:bg-[#e9e9e9]"
               href="/sales"
             >
               <Info className="h-4 w-4 sm:h-[18px] sm:w-[18px]" aria-hidden="true" />
               MORE INFO
             </a>
+          </div>
+        </div>
+
+        <div className="mx-auto mt-10 w-full max-w-[1100px] overflow-hidden rounded-[28px] border border-black/20 bg-[#ededed]">
+          <div className="grid grid-cols-1 md:grid-cols-2">
+            <div className="border-b border-black/20 md:border-b-0 md:border-r">
+              <div className="flex min-h-[86px] items-center justify-center px-6 py-6">
+                <div className="text-left leading-none text-[#111]">
+                  <p className="text-[14px] font-extrabold uppercase tracking-[0.06em]">TRADITIONAL</p>
+                  <p className="mt-1 text-[20px] font-extrabold uppercase tracking-[0.02em]">LEAD GENERATION</p>
+                </div>
+              </div>
+
+              <div className="border-t border-black/20 px-6 py-6 sm:px-10">
+                <ul className="mx-auto w-full max-w-[520px] space-y-2 text-left text-[15px] font-medium text-[#111] sm:text-[16px]">
+                  <li className="flex items-start gap-3">
+                    <span aria-hidden="true">•</span>
+                    <span>Pay per lead</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span aria-hidden="true">•</span>
+                    <span>Shared with multiple firms</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span aria-hidden="true">•</span>
+                    <span>You handle intake</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span aria-hidden="true">•</span>
+                    <span>Low conversion rates</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span aria-hidden="true">•</span>
+                    <span>No signing support</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span aria-hidden="true">•</span>
+                    <span>High staff burden</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div>
+              <div className="flex min-h-[86px] items-center justify-center px-6 py-6">
+                <img
+                  src="/assets/logo-horizontal.png"
+                  alt="Accident Payments"
+                  className="h-8 w-auto select-none object-contain sm:h-10"
+                  loading="lazy"
+                />
+              </div>
+
+              <div className="border-t border-black/20 px-6 py-6 sm:px-10">
+                <ul className="mx-auto w-full max-w-[520px] space-y-2 text-right text-[15px] font-medium text-[#111] sm:text-[16px]">
+                  <li className="flex flex-row-reverse items-start gap-3">
+                    <span aria-hidden="true">•</span>
+                    <span>Pay per signed case</span>
+                  </li>
+                  <li className="flex flex-row-reverse items-start gap-3">
+                    <span aria-hidden="true">•</span>
+                    <span>100% exclusive</span>
+                  </li>
+                  <li className="flex flex-row-reverse items-start gap-3">
+                    <span aria-hidden="true">•</span>
+                    <span>We qualify and sign</span>
+                  </li>
+                  <li className="flex flex-row-reverse items-start gap-3">
+                    <span aria-hidden="true">•</span>
+                    <span>High-intent accident clients</span>
+                  </li>
+                  <li className="flex flex-row-reverse items-start gap-3">
+                    <span aria-hidden="true">•</span>
+                    <span>Dedicated intake &amp; closing team</span>
+                  </li>
+                  <li className="flex flex-row-reverse items-start gap-3">
+                    <span aria-hidden="true">•</span>
+                    <span>Delivered ready for litigation</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
