@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import VideoCarouselSection from './VideoCarouselSection';
+import { Info } from 'lucide-react';
 
 export default function WhyAccidentPaymentsSection() {
   return (
@@ -41,12 +42,22 @@ export default function WhyAccidentPaymentsSection() {
         </p>
 
         <div className="mt-8 flex justify-center">
-          <a
-            href="#booking"
-            className="inline-flex items-center justify-center rounded-pill bg-gradient-to-r from-brand via-[#cc3f08] to-brand px-12 py-5 text-[18px] sm:text-[20px] font-extrabold text-[#fef7f2] shadow-glow transition hover:-translate-y-[1px] hover:shadow-[0_14px_30px_rgba(204,63,8,0.30)]"
-          >
-            SCHEDULE A CALL
-          </a>
+          <div className="flex flex-col items-center justify-center">
+            <a
+              href="#booking"
+              className="inline-flex items-center justify-center rounded-pill bg-gradient-to-r from-brand via-[#cc3f08] to-brand px-12 py-5 text-[18px] sm:text-[20px] font-extrabold text-[#fef7f2] shadow-glow transition hover:-translate-y-[1px] hover:shadow-[0_14px_30px_rgba(204,63,8,0.30)]"
+            >
+              SCHEDULE A CALL
+            </a>
+
+            <a
+              className="mt-3 inline-flex items-center justify-center gap-2 rounded-pill border border-brand bg-transparent px-8 py-3 text-[14px] sm:text-[16px] font-semibold text-brand transition hover:-translate-y-[1px] hover:bg-white/5"
+              href="/sales"
+            >
+              <Info className="h-4 w-4 sm:h-[18px] sm:w-[18px]" aria-hidden="true" />
+              MORE INFO
+            </a>
+          </div>
         </div>
       </div>
     </section>

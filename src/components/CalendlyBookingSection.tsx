@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { LazyMotion, domAnimation, m, useScroll, useSpring, useTransform } from 'framer-motion';
 import Image from 'next/image';
+import { Info } from 'lucide-react';
 
 type CalendlyBookingSectionProps = {
   calendlyUrl?: string;
@@ -301,12 +302,22 @@ export default function CalendlyBookingSection({ calendlyUrl }: CalendlyBookingS
           </div>
 
           <div className="mx-auto max-w-[1100px] px-4 sm:px-12 pt-8 pb-8 sm:pb-12 text-center">
-            <a
-              className="inline-flex items-center justify-center rounded-pill bg-gradient-to-r from-brand via-[#cc3f08] to-brand hover:shadow-[0_14px_30px_rgba(204,63,8,0.30)] px-10 py-4 text-[16px] sm:text-[18px] font-bold text-[#fef7f2] transition-all shadow-glow"
-              href="#booking"
-            >
-              SCHEDULE A CALL
-            </a>
+            <div className="flex flex-col items-center justify-center">
+              <a
+                className="inline-flex items-center justify-center rounded-pill bg-gradient-to-r from-brand via-[#cc3f08] to-brand hover:shadow-[0_14px_30px_rgba(204,63,8,0.30)] px-10 py-4 text-[16px] sm:text-[18px] font-bold text-[#fef7f2] transition-all shadow-glow"
+                href="#booking"
+              >
+                SCHEDULE A CALL
+              </a>
+
+              <a
+                className="mt-3 inline-flex items-center justify-center gap-2 rounded-pill border border-brand bg-transparent px-8 py-3 text-[14px] sm:text-[16px] font-semibold text-brand transition hover:-translate-y-[1px] hover:bg-white/5"
+                href="/sales"
+              >
+                <Info className="h-4 w-4 sm:h-[18px] sm:w-[18px]" aria-hidden="true" />
+                MORE INFO
+              </a>
+            </div>
           </div>
         </div>
       </div>

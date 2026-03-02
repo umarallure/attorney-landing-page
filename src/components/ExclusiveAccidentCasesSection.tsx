@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { Info } from 'lucide-react';
 import { useLazyBackground } from '@/hooks/useLazyBackground';
 
 export default function ExclusiveAccidentCasesSection() {
@@ -61,12 +62,14 @@ export default function ExclusiveAccidentCasesSection() {
               <p className="text-[clamp(18px,3vw,30px)] font-extrabold text-white drop-shadow-[0_10px_18px_rgba(0,0,0,0.55)]">
                 Ready to Start Receiving Exclusive Accident Cases?
               </p>
-              <a
-                className="mt-4 inline-flex items-center justify-center rounded-pill bg-brand px-9 py-3 lg:px-12 lg:py-4 text-lg font-extrabold text-white shadow-[0_12px_30px_rgba(0,0,0,0.25)] transition hover:-translate-y-[1px] sm:mt-5 sm:bg-brand sm:px-10 sm:py-4 sm:text-lg"
-                href="#booking"
-              >
-                SCHEDULE A CALL
-              </a>
+              <div className="mt-4 flex flex-col items-center justify-center sm:mt-5">
+                <a
+                  className="inline-flex items-center justify-center rounded-pill bg-brand px-9 py-3 lg:px-12 lg:py-4 text-lg font-extrabold text-white shadow-[0_12px_30px_rgba(0,0,0,0.25)] transition hover:-translate-y-[1px] sm:bg-brand sm:px-10 sm:py-4 sm:text-lg"
+                  href="#booking"
+                >
+                  SCHEDULE A CALL
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -107,12 +110,22 @@ export default function ExclusiveAccidentCasesSection() {
           </div>
 
           <div className="mt-10 flex justify-center">
-            <a
-              href="#booking"
-              className="inline-flex items-center justify-center rounded-pill bg-[#0f0f0f] px-9 py-3 lg:px-12 lg:py-4 text-[16px] sm:text-[18px] font-extrabold text-white shadow-[0_14px_30px_rgba(0,0,0,0.25)] transition hover:-translate-y-[1px]"
-            >
-              SCHEDULE A CALL
-            </a>
+            <div className="flex flex-col items-center justify-center">
+              <a
+                href="#booking"
+                className="inline-flex items-center justify-center rounded-pill bg-[#0f0f0f] px-9 py-3 lg:px-12 lg:py-4 text-[16px] sm:text-[18px] font-extrabold text-white shadow-[0_14px_30px_rgba(0,0,0,0.25)] transition hover:-translate-y-[1px]"
+              >
+                SCHEDULE A CALL
+              </a>
+
+              <a
+                className="mt-3 inline-flex items-center justify-center gap-2 rounded-pill border border-brand bg-transparent px-8 py-3 text-[14px] sm:text-[16px] font-semibold text-brand transition hover:-translate-y-[1px] hover:bg-white/5"
+                href="/sales"
+              >
+                <Info className="h-4 w-4 sm:h-[18px] sm:w-[18px]" aria-hidden="true" />
+                MORE INFO
+              </a>
+            </div>
           </div>
         </div>
       </div>
