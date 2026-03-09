@@ -31,12 +31,12 @@ export default function ThankYou() {
         />
 
         <div className="h-screen overflow-y-auto snap-y snap-mandatory pt-14 sm:pt-16">
-          <section className="snap-start scroll-mt-14 sm:scroll-mt-16 min-h-[calc(100vh-56px)] flex items-center justify-center ">
-            <div className="w-full max-w-[1500px]">
-              <div className="mx-auto w-full overflow-hidden rounded-[26px] bg-[#d9d9d9] shadow-[0_18px_50px_rgba(0,0,0,0.35)]">
-                <div className="flex aspect-[16/9] w-full items-center justify-center sm:aspect-[21/9]">
+          <section className="snap-start scroll-mt-14 sm:scroll-mt-16 min-h-[calc(100vh-56px)] flex items-center justify-center">
+            <div className="w-full">
+              <div className="w-full overflow-hidden bg-[#d9d9d9] shadow-[0_18px_50px_rgba(0,0,0,0.35)]">
+                <div className="flex h-[calc(100vh-56px-140px)] w-full items-center justify-center sm:h-[calc(100vh-64px-160px)]">
                   <video
-                    className="h-full w-full"
+                    className="h-full w-full object-cover"
                     src="https://res.cloudinary.com/accidentpayments/video/upload/v1773066732/thankyou-video.mp4"
                     controls
                     playsInline
@@ -44,7 +44,7 @@ export default function ThankYou() {
                   />
                 </div>
               </div>
-              <div className="mt-8 flex justify-center">
+              <div className="mt-4 flex justify-center">
                 <img
                   src="/assets/Arrow.png"
                   alt="Scroll down"
