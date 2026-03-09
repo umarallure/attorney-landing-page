@@ -102,12 +102,14 @@ export default function WhyAccidentPaymentsSection() {
 
             <div>
               <div className="flex min-h-[86px] items-center justify-center px-6 py-6">
-                <img
-                  src="/assets/logo-horizontal.png"
-                  alt="Accident Payments"
-                  className="h-8 w-auto select-none object-contain sm:h-10"
-                  loading="lazy"
-                />
+                <a href="/" className="inline-flex items-center">
+                  <img
+                    src="/assets/logo-horizontal.png"
+                    alt="Accident Payments"
+                    className="h-8 w-auto select-none object-contain sm:h-10"
+                    loading="lazy"
+                  />
+                </a>
               </div>
 
               <div className="border-t border-black/20 px-6 py-6 sm:px-10">

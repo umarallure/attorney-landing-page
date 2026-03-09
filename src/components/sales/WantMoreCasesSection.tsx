@@ -51,12 +51,14 @@ export default function WantMoreCasesSection() {
             </div>
           </div>
 
-          <img
-            src="/assets/logo-horizontal.png"
-            alt="Accident Payments"
-            className="mx-auto mt-12 h-10 w-auto object-contain sm:mt-14 sm:h-12 md:mt-16 md:h-14"
-            loading="lazy"
-          />
+          <a href="/" className="mx-auto mt-12 inline-flex items-center sm:mt-14 md:mt-16">
+            <img
+              src="/assets/logo-horizontal.png"
+              alt="Accident Payments"
+              className="h-10 w-auto object-contain sm:h-12 md:h-14"
+              loading="lazy"
+            />
+          </a>
         </div>
       </div>
     </section>

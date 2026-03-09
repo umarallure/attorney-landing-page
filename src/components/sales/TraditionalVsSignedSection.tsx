@@ -42,12 +42,14 @@ export default function TraditionalVsSignedSection() {
                   <br />
                   RETAINERS
                 </p>
-                <img
-                  src="/assets/logo-horizontal.png"
-                  alt="Accident Payments"
-                  className="mt-3 h-8 w-auto select-none sm:h-10"
-                  loading="lazy"
-                />
+                <a href="/" className="mt-3 inline-flex items-center">
+                  <img
+                    src="/assets/logo-horizontal.png"
+                    alt="Accident Payments"
+                    className="h-8 w-auto select-none sm:h-10"
+                    loading="lazy"
+                  />
+                </a>
               </div>
             </div>
           </div>

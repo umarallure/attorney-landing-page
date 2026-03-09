@@ -18,12 +18,14 @@ export default function WeDoDifferentSection() {
             SIGNED RETAINERS
           </p>
 
-          <img
-            src="/assets/logo-horizontal.png"
-            alt="Accident Payments"
-            className="mx-auto h-8 w-auto select-none sm:h-10"
-            loading="lazy"
-          />
+          <a href="/" className="mx-auto inline-flex items-center">
+            <img
+              src="/assets/logo-horizontal.png"
+              alt="Accident Payments"
+              className="h-8 w-auto select-none sm:h-10"
+              loading="lazy"
+            />
+          </a>
 
           <div className="mx-auto mt-6 max-w-[980px] space-y-6 text-[14px] font-semibold leading-relaxed text-[#111] sm:text-[18px]">
             <p>

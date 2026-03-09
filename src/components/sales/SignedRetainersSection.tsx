@@ -47,12 +47,14 @@ export default function SignedRetainersSection() {
                 RETAINERS
               </p>
 
-              <img
-                src="/assets/logo-horizontal.png"
-                alt="Accident Payments"
-                className="mt-2 h-8 w-auto select-none sm:h-10"
-                loading="lazy"
-              />
+              <a href="/" className="mt-2 inline-flex items-center">
+                <img
+                  src="/assets/logo-horizontal.png"
+                  alt="Accident Payments"
+                  className="h-8 w-auto select-none sm:h-10"
+                  loading="lazy"
+                />
+              </a>
 
               <p className="mt-2 text-base font-extrabold uppercase tracking-[0.06em] text-[#111] sm:mt-3 sm:text-xl">
                 PROVIDES YOUR LAW FIRM

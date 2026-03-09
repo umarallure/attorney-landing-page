@@ -21,11 +21,13 @@ export default function Header({
     <nav className={`${position} left-0 top-0 z-20 w-full border-b border-white/10 bg-[#202020] backdrop-blur-md`}>
       <div className="mx-auto flex w-[min(1200px,94vw)] items-center justify-between py-3">
         <div className="flex items-center gap-2 font-bold tracking-tight">
-          <img
-            src="/assets/logo-white.png"
-            alt="Accident Payments"
-            className="h-7 w-auto sm:h-8 md:h-9"
-          />
+          <a href="/" className="inline-flex items-center">
+            <img
+              src="/assets/logo-white.png"
+              alt="Accident Payments"
+              className="h-7 w-auto sm:h-8 md:h-9"
+            />
+          </a>
         </div>
         <div className="flex flex-col items-end gap-2 sm:flex-row sm:items-center">
           <a

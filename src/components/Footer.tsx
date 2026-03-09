@@ -19,11 +19,13 @@ export default function Footer() {
             MORE INFO
           </a>
         </div>
-        <img
-          src="/assets/logo-white.png"
-          alt="Accident Payments"
-          className="h-7 sm:h-8 md:h-9 w-auto"
-        />
+        <a href="/" className="inline-flex items-center">
+          <img
+            src="/assets/logo-white.png"
+            alt="Accident Payments"
+            className="h-7 sm:h-8 md:h-9 w-auto"
+          />
+        </a>
       </div>
     </footer>
   );

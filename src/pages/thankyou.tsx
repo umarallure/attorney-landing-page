@@ -1,5 +1,7 @@
 import Head from 'next/head';
 
+import Header from '../components/Header';
+
 export default function ThankYou() {
   return (
     <>
@@ -20,31 +22,16 @@ export default function ThankYou() {
           backgroundPosition: 'center',
         }}
       >
-        <nav className="backdrop-blur-md bg-[#202020] border-b border-white/10">
-          <div className="mx-auto flex w-[min(1200px,94vw)] items-center justify-between py-3">
-            <div className="flex items-center gap-2 font-bold tracking-tight">
-              <img src="/assets/logo-white.png" alt="Accident Payments" className="h-8 w-auto sm:h-9" />
-            </div>
+        <Header
+          secondaryHref="/"
+          secondaryLabel="HOME"
+          secondaryIcon="home"
+          primaryHref="/#booking"
+          position="fixed"
+        />
 
-            <div className="flex flex-col items-end gap-2 sm:flex-row sm:items-center">
-              <a
-                className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-pill border border-brand bg-white px-3 py-1.5 text-[13px] sm:px-4 sm:py-2 sm:text-[15px] font-semibold text-brand transition hover:-translate-y-[1px] hover:bg-white/90"
-                href="/"
-              >
-                HOME
-              </a>
-              <a
-                className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-pill border border-transparent bg-gradient-to-r from-brand via-[#cc3f08] to-brand px-3 py-1.5 text-[13px] sm:px-4 sm:py-2 sm:text-[15px] font-semibold text-[#fef7f2] shadow-glow transition hover:-translate-y-[1px] hover:shadow-[0_14px_30px_rgba(204,63,8,0.30)]"
-                href="/sales#booking"
-              >
-                SCHEDULE A CALL
-              </a>
-            </div>
-          </div>
-        </nav>
-
-        <div className="h-[calc(100vh-56px)] overflow-y-auto snap-y snap-mandatory">
-          <section className="snap-start min-h-[calc(100vh-56px)] flex items-center justify-center ">
+        <div className="h-screen overflow-y-auto snap-y snap-mandatory pt-14 sm:pt-16">
+          <section className="snap-start scroll-mt-14 sm:scroll-mt-16 min-h-[calc(100vh-56px)] flex items-center justify-center ">
             <div className="w-full max-w-[1500px]">
               <div className="mx-auto w-full overflow-hidden rounded-[26px] bg-[#d9d9d9] shadow-[0_18px_50px_rgba(0,0,0,0.35)]">
                 <div className="flex aspect-[16/9] w-full items-center justify-center sm:aspect-[21/9]">
@@ -67,7 +54,7 @@ export default function ThankYou() {
             </div>
           </section>
 
-          <section className="snap-start min-h-[calc(100vh-56px)] flex items-center justify-center px-4 py-10 sm:px-6">
+          <section className="snap-start scroll-mt-14 sm:scroll-mt-16 min-h-[calc(100vh-56px)] flex items-center justify-center px-4 py-10 sm:px-6">
             <div className="w-full max-w-[980px]">
               <div className="mx-auto w-full max-w-[1500px] px-6 py-12 text-center sm:px-14 sm:py-16">
                 <p className="text-xl font-extrabold uppercase tracking-[0.16em] text-brand sm:text-4xl">Step 1 : Confirm the logistics</p>
@@ -85,7 +72,7 @@ export default function ThankYou() {
             </div>
           </section>
 
-          <section className="snap-start min-h-[calc(100vh-56px)] flex items-center justify-center px-4 py-10 sm:px-6">
+          <section className="snap-start scroll-mt-14 sm:scroll-mt-16 min-h-[calc(100vh-56px)] flex items-center justify-center px-4 py-10 sm:px-6">
             <div className="w-full max-w-[980px]">
               <div className="mx-auto w-full max-w-[1500px] px-6 py-12 text-center sm:px-14 sm:py-16">
                 <p className="text-xl font-extrabold uppercase tracking-[0.16em] text-brand sm:text-4xl">Step 2 : Optimize your environment</p>
@@ -103,7 +90,7 @@ export default function ThankYou() {
             </div>
           </section>
 
-          <section className="snap-start min-h-[calc(100vh-56px)] flex items-center justify-center px-4 py-10 sm:px-6">
+          <section className="snap-start scroll-mt-14 sm:scroll-mt-16 min-h-[calc(100vh-56px)] flex items-center justify-center px-4 py-10 sm:px-6">
             <div className="w-full max-w-[980px]">
               <div className="mx-auto w-full max-w-[1500px] px-6 py-12 text-center sm:px-14 sm:py-16">
                 <p className="text-xl font-extrabold uppercase tracking-[0.16em] text-brand sm:text-4xl">Step 3 : Prepare for value</p>
@@ -121,7 +108,7 @@ export default function ThankYou() {
             </div>
           </section>
 
-          <section className="snap-start min-h-[calc(100vh-56px)] flex items-center justify-center px-4 py-12 sm:px-6">
+          <section className="snap-start scroll-mt-14 sm:scroll-mt-16 min-h-[calc(100vh-56px)] flex items-center justify-center px-4 py-12 sm:px-6">
             <div className="w-full max-w-[980px] text-center">
               <div className="w-full rounded-smooth border border-white/10 bg-[#202020] p-6 shadow-[0_18px_50px_rgba(0,0,0,0.35)] backdrop-blur sm:p-10">
                 <p className="text-sm leading-relaxed text-[#d4d4d4] sm:text-lg">
