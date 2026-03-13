@@ -2,7 +2,7 @@ import Head from 'next/head';
 
 import Header from '../components/Header';
 import SectionArrow from '../components/sales/SectionArrow';
-import LoomVideoSection from '../components/sales/LoomVideoSection';
+// import LoomVideoSection from '../components/sales/LoomVideoSection';
 import FirstAccessSection from '../components/sales/FirstAccessSection';
 import TraditionalVsSignedSection from '../components/sales/TraditionalVsSignedSection';
 import TraditionalAdvertisingSection from '../components/sales/TraditionalAdvertisingSection';
@@ -33,8 +33,8 @@ export default function SalesPage() {
       <main className="h-screen bg-[#d9d9d9] text-[#111]">
         <Header secondaryHref="/" secondaryLabel="HOME" secondaryIcon="home" primaryHref="/#booking" position="fixed" />
         <div className="h-screen overflow-y-auto snap-y snap-mandatory">
-          <LoomVideoSection />
-          <SectionArrow />
+          {/* <LoomVideoSection /> */}
+          {/* <SectionArrow /> */}
           <FirstAccessSection />
           <SectionArrow />
           <TraditionalVsSignedSection />
