@@ -47,8 +47,8 @@ export default function FAQSection() {
     >
       <div className="mx-auto w-[min(1200px,94vw)] px-4">
         <div className="mx-auto max-w-[920px] text-center">
-          <p className="text-[clamp(18px,2.8vw,28px)] font-extrabold text-[#f6f6f6]">Limited Firm Partnerships</p>
-          <p className="mx-auto mt-2 max-w-3xl text-sm sm:text-base leading-relaxed text-[#bfbfbf]">
+          <p className="text-2xl lg:text-4xl font-extrabold text-[#f6f6f6]">Limited Firm Partnerships</p>
+          <p className="mx-auto mt-2 max-w-3xl text-sm sm:text-lg leading-relaxed text-[#bfbfbf]">
             To maintain case quality and exclusivity, we limit the number of firms we partner with per state.
           </p>
 
@@ -85,10 +85,10 @@ export default function FAQSection() {
           </div>
         </div>
 
-        <h2 className="mt-12 text-center text-[clamp(24px,4vw,36px)] font-bold text-[#f6f6f6]">
+        <h2 className="mt-12 text-center text-2xl lg:text-4xl font-bold text-[#f6f6f6]">
           FAQs
         </h2>
-        <p className="mx-auto mt-2 max-w-3xl text-center text-base sm:text-lg leading-relaxed text-[#bfbfbf]">
+        <p className="mx-auto mt-2 max-w-3xl text-center text-sm sm:text-lg leading-relaxed text-[#bfbfbf]">
           Still thinking it through? Here are straight answers.
         </p>
         <div className="mx-auto mt-8 grid max-w-[980px] gap-6">

@@ -8,7 +8,7 @@ export default function CancellationRateSection() {
               <p className="text-[18px] font-extrabold uppercase tracking-[0.06em] text-[#111] sm:text-[24px]">
                 OUR CLIENTS HAVE A LESS THAN
               </p>
-              <p className="mt-1 text-[150px] font-extrabold leading-[0.85] text-brand sm:text-[210px] md:text-[260px]">
+              <p className="font-anton mt-1 text-[150px] leading-[0.85] text-brand sm:text-[210px] md:text-[260px]">
                 10%
               </p>
               <p className="mt-1 text-[18px] font-extrabold uppercase tracking-[0.06em] text-[#111] sm:text-[24px]">

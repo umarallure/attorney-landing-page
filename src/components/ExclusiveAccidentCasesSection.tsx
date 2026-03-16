@@ -21,26 +21,26 @@ export default function ExclusiveAccidentCasesSection() {
     >
       <div className="mx-auto w-[min(1200px,94vw)] px-4">
         <div className="text-center">
-          <h2 className="text-[clamp(22px,4vw,34px)] font-extrabold text-brand">
+          <h2 className="text-2xl lg:text-4xl font-extrabold text-brand">
             Exclusive Accident Cases for Attorneys
           </h2>
-          <p className="mt-2 text-[clamp(18px,3vw,28px)] font-medium text-[#1b1b1b]">
+          <p className="mt-2 text-sm sm:text-lg font-medium text-[#1b1b1b]">
             Not Shared, Not Resold.
           </p>
 
           <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-3 sm:gap-10">
             <div className="text-center">
-              <div className="text-7xl font-black leading-none text-brand">$2,500</div>
+              <div className="font-anton text-7xl leading-none text-brand">$2,500</div>
               <div className="text-lg sm:text-xl font-base text-[#1b1b1b]">Average Cost Per Acquisition</div>
               <div className="text-xl sm:text-xl font-extrabold text-[#1b1b1b]">in New York</div>
             </div>
             <div className="text-center">
-              <div className="text-7xl font-black leading-none text-brand">$3,500</div>
+              <div className="font-anton text-7xl leading-none text-brand">$3,500</div>
               <div className="text-lg sm:text-xl font-base text-[#1b1b1b]">Average Cost Per Acquisition</div>
               <div className="text-xl sm:text-xl font-extrabold text-[#1b1b1b]">in Texas</div>
             </div>
             <div className="text-center">
-              <div className="text-7xl font-black leading-none text-brand">$6,500</div>
+              <div className="font-anton text-7xl leading-none text-brand">$6,500</div>
               <div className="text-lg sm:text-xl font-base text-[#1b1b1b]">Average Cost Per Acquisition</div>
               <div className="text-xl sm:text-xl font-extrabold text-[#1b1b1b]">in California</div>
             </div>
@@ -74,9 +74,9 @@ export default function ExclusiveAccidentCasesSection() {
           </div>
         </div>
 
-        <div className="mt-12 sm:mt-14 text-center">
-          <p className="text-[clamp(18px,3.2vw,30px)] font-extrabold text-brand">Our Case Quality Guarantee</p>
-          <p className="mt-2 text-[clamp(14px,2.2vw,18px)] font-medium text-[#444]">
+        <div className="mt-2 sm:mt-4 text-center">
+          <p className="text-2xl lg:text-4xl font-extrabold text-brand">Our Case Quality Guarantee</p>
+          <p className="mt-2 text-sm sm:text-lg font-medium text-[#444]">
             Built-in protection to eliminate your outsourcing risk.
           </p>
 
@@ -107,8 +107,8 @@ export default function ExclusiveAccidentCasesSection() {
         </div>
 
         <div className="mt-12 sm:mt-14 text-center">
-          <p className="text-[clamp(18px,3vw,28px)] font-medium text-[#1b1b1b]">Our Testimonials</p>
-          <p className="mt-2 text-[clamp(18px,3.2vw,30px)] font-extrabold text-brand">
+          <p className="text-2xl lg:text-4xl font-extrabold text-brand">Our Testimonials</p>
+          <p className="mt-2 text-sm sm:text-lg font-medium text-[#444]">
             WHAT PEOPLE ARE SAYING ABOUT US
           </p>
 

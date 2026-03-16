@@ -207,7 +207,7 @@ export default function CalendlyBookingSection({ calendlyUrl }: CalendlyBookingS
             <h2 className="text-2xl lg:text-4xl font-bold leading-[1.1] text-brand">
               Cases Qualified, Signed, and Delivered.
             </h2>
-            <p className="mt-3 text-xl lg:text-2xl leading-relaxed text-white/85">
+            <p className="mt-3 text-sm sm:text-lg leading-relaxed text-white/85">
               We qualify, follow up, and sign accident cases before sending them to your firm.
             </p>
           </div>
