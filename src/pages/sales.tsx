@@ -30,45 +30,30 @@ export default function SalesPage() {
         <link rel="icon" href="/assets/favicon.ico" />
       </Head>
 
-      <main className="h-screen bg-[#d9d9d9] text-[#111]">
+      <main className="sales-viewport bg-[#d9d9d9] text-[#111]">
         <Header secondaryHref="/" secondaryLabel="HOME" secondaryIcon="home" primaryHref="/#booking" position="fixed" />
-        <div className="h-screen overflow-y-auto snap-y snap-mandatory">
+        <div className="sales-viewport sales-scroll overflow-y-auto snap-y snap-mandatory">
           {/* <LoomVideoSection /> */}
           {/* <SectionArrow /> */}
           <FirstAccessSection />
-          <SectionArrow />
           <TraditionalVsSignedSection />
-          <SectionArrow />
           <TraditionalAdvertisingSection />
-          <SectionArrow />
           <WeDoDifferentSection />
-          <SectionArrow />
           <TraditionalLeadsSection />
-          <SectionArrow />
           <SignedRetainersSection />
-          <SectionArrow />
           <CancellationRateSection />
-          <SectionArrow />
           <GrowBusinessSection />
-          <SectionArrow />
           <HighQualityLeadsSection />
-          <SectionArrow />
           <Filter01IntentSection />
-          <SectionArrow />
           <Filter02EducationSection />
-          <SectionArrow />
           <Filter03QualificationSection />
-          <SectionArrow />
           <WantMoreCasesSection />
-          <SectionArrow />
           <HelpedLawFirmsSection />
-          <SectionArrow />
           <ImageSection19 />
-          <SectionArrow />
           <ImageSection20 />
-          <SectionArrow />
           <FinalCTASection />
         </div>
+        <SectionArrow />
       </main>
     </>
   );

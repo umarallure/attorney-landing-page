@@ -25,6 +25,35 @@
   color-scheme: dark;
 }
 
+@layer utilities {
+  /* Sales page: prefer dvh when available, but keep a safe vh fallback. */
+  .sales-viewport {
+    height: 100vh;
+    height: 100dvh;
+  }
+
+  /* Sales page: fixed header offset (matches Header's mobile/desktop heights). */
+  .sales-scroll {
+    --sales-header: 56px;
+    padding-top: var(--sales-header);
+    scroll-padding-top: var(--sales-header);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  @media (min-width: 640px) {
+    .sales-scroll {
+      --sales-header: 64px;
+    }
+  }
+
+  /* Slides should be sized to the visible viewport area below the fixed header. */
+  .sales-slide {
+    min-height: calc(100vh - var(--sales-header));
+    min-height: calc(100dvh - var(--sales-header));
+    scroll-margin-top: var(--sales-header);
+  }
+}
+
 html,
 body {
   padding: 0;
