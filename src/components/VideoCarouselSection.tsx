@@ -3,6 +3,7 @@ import { Play, Volume2 } from 'lucide-react';
 
 const VIDEO_COUNT = 3;
 const GAP_PX = 20;
+const MARQUEE_DURATION = 28; // seconds
 
 export default function VideoCarouselSection() {
   const videoPublicIds = useMemo(
@@ -18,15 +19,17 @@ export default function VideoCarouselSection() {
     Array(VIDEO_COUNT).fill(null)
   );
   const [isLoadingVideos, setIsLoadingVideos] = useState(true);
-  const [isMarqueePaused, setIsMarqueePaused] = useState(false);
   const [activeBaseIndex, setActiveBaseIndex] = useState<number | null>(null);
 
   // 6 refs: 0-2 = originals, 3-5 = clones
   const videoRefs = useRef<(HTMLVideoElement | null)[]>(Array(VIDEO_COUNT * 2).fill(null));
+  const stripRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const hasStartedRef = useRef(false);
   const hasQueuedRemainingRef = useRef(false);
   const isResumingRef = useRef(false);
+  // The translateX the strip was at when a video was clicked (to resume from there)
+  const frozenTranslateXRef = useRef(0);
 
   // Items: [0,1,2, 0(clone),1(clone),2(clone)]
   const items = useMemo(
@@ -53,7 +56,6 @@ export default function VideoCarouselSection() {
     const cacheKey = `cloudinary_video_v2_${publicId}`;
     const cached = sessionStorage.getItem(cacheKey);
     if (cached) return cached;
-
     const res = await fetch(
       `/api/cloudinary/video-url?publicId=${encodeURIComponent(publicId)}`
     );
@@ -95,15 +97,74 @@ export default function VideoCarouselSection() {
         if (isMounted) setIsLoadingVideos(false);
       }
     })();
-    return () => {
-      isMounted = false;
-    };
+    return () => { isMounted = false; };
   }, [fetchVideoUrl, setVideoUrlAtIndex, videoPublicIds]);
 
-  // ── Playback helpers ─────────────────────────────────────────────────────────
-  // NOTE: We use src={url} directly on <video> (not <source> children) so that
-  // video.src is always populated and we can reliably call play().
+  // ── Strip animation helpers (all imperative — no React state involved) ────────
+
+  /** Read the current translateX from the strip's computed transform matrix. */
+  const getStripTranslateX = useCallback((): number => {
+    const strip = stripRef.current;
+    if (!strip) return 0;
+    const matrix = window.getComputedStyle(strip).transform;
+    if (!matrix || matrix === 'none') return 0;
+    const parts = matrix.match(/matrix\((.+)\)/)?.[1].split(',');
+    return parts ? parseFloat(parts[4]) : 0;
+  }, []);
+
+  /** Freeze the strip at its current animated position (overrides CSS animation). */
+  const freezeStrip = useCallback((): number => {
+    const strip = stripRef.current;
+    if (!strip) return 0;
+    const tx = getStripTranslateX();
+    strip.style.transition = '';
+    strip.style.animation = 'none';
+    strip.style.transform = `translateX(${tx}px)`;
+    return tx;
+  }, [getStripTranslateX]);
+
+  /** Animate the strip to a target translateX, calls onDone when complete. */
+  const animateStripTo = useCallback(
+    (targetX: number, durationMs: number, onDone?: () => void) => {
+      const strip = stripRef.current;
+      if (!strip) { onDone?.(); return; }
+      strip.style.transition = `transform ${durationMs}ms cubic-bezier(0.4, 0, 0.2, 1)`;
+      strip.style.transform = `translateX(${targetX}px)`;
+      let done = false;
+      const finish = () => {
+        if (done) return;
+        done = true;
+        strip.style.transition = '';
+        onDone?.();
+      };
+      strip.addEventListener('transitionend', finish, { once: true });
+      setTimeout(finish, durationMs + 80); // safety fallback
+    },
+    []
+  );
+
+  /** Resume the CSS marquee animation from a specific translateX value. */
+  const resumeAnimationFrom = useCallback((fromX: number) => {
+    const strip = stripRef.current;
+    if (!strip) return;
+    const halfWidth = strip.scrollWidth / 2;
+    // Normalize fromX into the animation range [−halfWidth, 0]
+    let normalized = fromX;
+    if (halfWidth > 0) {
+      normalized = ((fromX % -halfWidth) - halfWidth) % -halfWidth;
+      if (normalized > 0) normalized -= halfWidth;
+    }
+    const progress = halfWidth > 0 ? Math.abs(normalized) / halfWidth : 0;
+    const delay = -(progress * MARQUEE_DURATION);
+    strip.style.transform = '';
+    strip.style.animation = `marquee-scroll ${MARQUEE_DURATION}s linear ${delay}s infinite`;
+  }, []);
+
+  // ── Video playback helpers ────────────────────────────────────────────────────
+
   const playAllMuted = useCallback(() => {
+    const strip = stripRef.current;
+    if (strip) strip.style.animation = `marquee-scroll ${MARQUEE_DURATION}s linear infinite`;
     videoRefs.current.forEach((v) => {
       if (!v) return;
       v.muted = true;
@@ -112,7 +173,7 @@ export default function VideoCarouselSection() {
     });
   }, []);
 
-  // Start videos: fires when URL is ready OR when section scrolls into view
+  // Start when section comes into view AND first URL is ready
   useEffect(() => {
     const section = sectionRef.current;
     if (!section || hasStartedRef.current || !videoUrls[0]) return;
@@ -120,8 +181,7 @@ export default function VideoCarouselSection() {
     const tryStart = () => {
       if (hasStartedRef.current) return;
       const rect = section.getBoundingClientRect();
-      const inView = rect.top < window.innerHeight * 0.8 && rect.bottom > 0;
-      if (inView) {
+      if (rect.top < window.innerHeight * 0.8 && rect.bottom > 0) {
         hasStartedRef.current = true;
         playAllMuted();
         loadRemainingVideos();
@@ -130,20 +190,16 @@ export default function VideoCarouselSection() {
     };
 
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) tryStart();
-      },
+      ([entry]) => { if (entry.isIntersecting) tryStart(); },
       { threshold: 0.2 }
     );
-
     observer.observe(section);
-    // Also check immediately in case section is already visible
-    tryStart();
+    tryStart(); // also check immediately if already visible
 
     return () => observer.disconnect();
   }, [playAllMuted, loadRemainingVideos, videoUrls]);
 
-  // Auto-play newly loaded videos while marquee is running
+  // Auto-start newly loaded videos while marquee is running
   useEffect(() => {
     if (!hasStartedRef.current || activeBaseIndex !== null) return;
     videoRefs.current.forEach((v) => {
@@ -159,7 +215,10 @@ export default function VideoCarouselSection() {
     if (isResumingRef.current) return;
     isResumingRef.current = true;
     setActiveBaseIndex(null);
-    setIsMarqueePaused(false);
+
+    // Resume from wherever the strip currently is (centered position) — no slide-back
+    const currentX = getStripTranslateX();
+    resumeAnimationFrom(currentX);
     videoRefs.current.forEach((v) => {
       if (!v) return;
       v.muted = true;
@@ -167,42 +226,55 @@ export default function VideoCarouselSection() {
       v.currentTime = 0;
       v.play().catch(() => {});
     });
-    setTimeout(() => {
-      isResumingRef.current = false;
-    }, 300);
-  }, []);
+    setTimeout(() => { isResumingRef.current = false; }, 200);
+  }, [getStripTranslateX, resumeAnimationFrom]);
 
   const handleVideoClick = useCallback(
-    (refIndex: number) => {
+    (refIndex: number, cardEl: HTMLDivElement) => {
       const baseIndex = refIndex % VIDEO_COUNT;
 
-      // Tapping an already-active video resumes the marquee
+      // Tapping the already-active video resumes the marquee
       if (activeBaseIndex === baseIndex) {
         resumeMarquee();
         return;
       }
 
-      setIsMarqueePaused(true);
-      setActiveBaseIndex(baseIndex);
+      // 1. Freeze strip at its current animated position
+      const frozenX = freezeStrip();
+      frozenTranslateXRef.current = frozenX;
 
+      // 2. Calculate how far to shift so this card lands in the viewport center
+      const cardRect = cardEl.getBoundingClientRect();
+      const cardCenterX = cardRect.left + cardRect.width / 2;
+      const viewportCenterX = window.innerWidth / 2;
+      const shift = viewportCenterX - cardCenterX;
+      const targetX = frozenX + shift;
+
+      // 3. Update active state + mute/pause other videos immediately
+      setActiveBaseIndex(baseIndex);
       videoRefs.current.forEach((v, i) => {
         if (!v) return;
-        if (i % VIDEO_COUNT === baseIndex) {
-          v.loop = false;
-          v.muted = false;
-          v.currentTime = 0;
-          v.play().catch(() => {
-            // Autoplay policy blocked unmuted — fall back to muted
-            v.muted = true;
-            v.play().catch(() => {});
-          });
-        } else {
+        if (i % VIDEO_COUNT !== baseIndex) {
           v.muted = true;
           v.pause();
         }
       });
+
+      // 4. Slide strip to center, then play the clicked video unmuted
+      animateStripTo(targetX, 450, () => {
+        videoRefs.current.forEach((v, i) => {
+          if (!v || i % VIDEO_COUNT !== baseIndex) return;
+          v.loop = false;
+          v.muted = false;
+          v.currentTime = 0;
+          v.play().catch(() => {
+            v.muted = true;
+            v.play().catch(() => {});
+          });
+        });
+      });
     },
-    [activeBaseIndex, resumeMarquee]
+    [activeBaseIndex, resumeMarquee, freezeStrip, animateStripTo]
   );
 
   const handleVideoEnded = useCallback(
@@ -228,18 +300,17 @@ export default function VideoCarouselSection() {
 
   return (
     <div ref={sectionRef} className="relative w-full overflow-hidden pb-2">
-      {/* ── Marquee strip ────────────────────────────────────────────────────── */}
+      {/* ── Marquee strip — animation is set imperatively via stripRef ─────────── */}
       <div
+        ref={stripRef}
         className="flex"
         style={{
           gap: `${GAP_PX}px`,
-          // paddingRight equals one gap, so translateX(-50%) lands at the exact
-          // start of the clone set — giving a perfectly seamless loop.
           paddingRight: `${GAP_PX}px`,
           width: 'max-content',
-          animation: 'marquee-scroll 28s linear infinite',
-          animationPlayState: isMarqueePaused ? 'paused' : 'running',
           willChange: 'transform',
+          // animation is NOT set here — playAllMuted() sets it imperatively
+          // so React re-renders never conflict with direct DOM animation control
         }}
       >
         {items.map(({ baseIndex, refIndex }) => {
@@ -251,21 +322,18 @@ export default function VideoCarouselSection() {
           return (
             <div
               key={refIndex}
-              onClick={() => handleVideoClick(refIndex)}
+              onClick={(e) => handleVideoClick(refIndex, e.currentTarget as HTMLDivElement)}
               className={`relative flex-shrink-0 cursor-pointer overflow-hidden rounded-xl transition-opacity duration-300 ${
                 isDimmed ? 'opacity-30' : 'opacity-100'
               }`}
               style={{
-                width: 'clamp(260px, 36vw, 560px)',
+                width: 'clamp(260px, 42vw, 720px)',
                 aspectRatio: '16/9',
               }}
             >
               {src ? (
-                /* src directly on <video> keeps video.src populated for play() guards */
                 <video
-                  ref={(el) => {
-                    videoRefs.current[refIndex] = el;
-                  }}
+                  ref={(el) => { videoRefs.current[refIndex] = el; }}
                   src={src}
                   className="h-full w-full object-cover"
                   playsInline
@@ -288,7 +356,7 @@ export default function VideoCarouselSection() {
                 </div>
               )}
 
-              {/* Hover play hint — shown when marquee is running */}
+              {/* Hover play hint */}
               {src && activeBaseIndex === null && (
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-200 hover:opacity-100">
                   <div className="rounded-full bg-black/40 p-4 backdrop-blur-sm">
@@ -297,7 +365,7 @@ export default function VideoCarouselSection() {
                 </div>
               )}
 
-              {/* Active: brand ring + playing badge */}
+              {/* Active: brand ring + badge */}
               {isActive && (
                 <>
                   <div className="pointer-events-none absolute inset-0 rounded-xl ring-[3px] ring-inset ring-brand" />
