@@ -1,6 +1,14 @@
 import Head from 'next/head';
 
 import Header from '../components/Header';
+import SectionArrow from '../components/sales/SectionArrow';
+
+const darkFrame: React.CSSProperties = {
+  '--sales-frame-surface': 'rgba(20,20,20,0.55)',
+  '--sales-frame-border': 'rgba(255,255,255,0.10)',
+  '--sales-frame-shadow': 'rgba(0,0,0,0.45)',
+  '--sales-frame-highlight': 'rgba(255,255,255,0.06)',
+} as React.CSSProperties;
 
 export default function ThankYou() {
   return (
@@ -30,11 +38,12 @@ export default function ThankYou() {
           position="fixed"
         />
 
-        <div className="h-screen overflow-y-auto snap-y snap-mandatory pt-14 sm:pt-16">
-          <section className="snap-start scroll-mt-14 sm:scroll-mt-16 min-h-[calc(100vh-56px)] flex items-center justify-center">
-            <div className="w-full">
-              <div className="w-full overflow-hidden bg-[#d9d9d9] shadow-[0_18px_50px_rgba(0,0,0,0.35)]">
-                <div className="flex h-[calc(100vh-56px-140px)] w-full items-center justify-center sm:h-[calc(100vh-64px-160px)]">
+        <div className="sales-scroll h-screen overflow-y-auto snap-y snap-mandatory scroll-smooth">
+          {/* Video slide */}
+          <section className="sales-slide snap-start flex items-center justify-center px-4 sm:px-6" style={darkFrame}>
+            <div className="w-full max-w-[1200px]">
+              <div className="w-full overflow-hidden rounded-xl bg-[#d9d9d9] shadow-[0_18px_50px_rgba(0,0,0,0.35)]">
+                <div className="aspect-video w-full">
                   <video
                     className="h-full w-full object-cover"
                     src="https://res.cloudinary.com/accidentpayments/video/upload/v1773066732/thankyou-video.mp4"
@@ -44,87 +53,57 @@ export default function ThankYou() {
                   />
                 </div>
               </div>
-              <div className="mt-4 flex justify-center">
-                <img
-                  src="/assets/Arrow.png"
-                  alt="Scroll down"
-                  className="h-24 w-auto sm:h-28"
-                />
-              </div>
             </div>
           </section>
 
-          <section className="snap-start scroll-mt-14 sm:scroll-mt-16 min-h-[calc(100vh-56px)] flex items-center justify-center px-4 py-10 sm:px-6">
-            <div className="w-full max-w-[980px]">
-              <div className="mx-auto w-full max-w-[1500px] px-6 py-12 text-center sm:px-14 sm:py-16">
-                <p className="text-xl font-extrabold uppercase tracking-[0.16em] text-brand sm:text-4xl">Step 1 : Confirm the logistics</p>
-                <p className="mt-6 text-base leading-relaxed text-[#c8c8c8] sm:text-2xl">
-                  Check your email for the Zoom link, accept the Google Calendar invite, and confirm your appointment via text message.
-                </p>
-              </div>
-              <div className="mt-10 flex justify-center">
-                <img
-                  src="/assets/Arrow.png"
-                  alt="Next step"
-                  className="h-28 w-auto sm:h-32"
-                />
-              </div>
+          {/* Step 1 */}
+          <section className="sales-slide snap-start flex items-center justify-center px-4 sm:px-6" style={darkFrame}>
+            <div className="w-full max-w-[980px] px-4 py-8 text-center sm:px-10 sm:py-10">
+              <p className="text-xl font-extrabold uppercase text-brand sm:text-4xl">Step 1 : Confirm the logistics</p>
+              <p className="mt-4 text-base leading-relaxed text-[#c8c8c8] sm:text-2xl">
+                Check your email for the Zoom link, accept the Google Calendar invite, and confirm your appointment via text message.
+              </p>
             </div>
           </section>
 
-          <section className="snap-start scroll-mt-14 sm:scroll-mt-16 min-h-[calc(100vh-56px)] flex items-center justify-center px-4 py-10 sm:px-6">
-            <div className="w-full max-w-[980px]">
-              <div className="mx-auto w-full max-w-[1500px] px-6 py-12 text-center sm:px-14 sm:py-16">
-                <p className="text-xl font-extrabold uppercase tracking-[0.16em] text-brand sm:text-4xl">Step 2 : Optimize your environment</p>
-                <p className="mt-6 text-base leading-relaxed text-[#c8c8c8] sm:text-2xl">
-                  Plan to be in a quiet, distraction-free space with your camera turned ON for the duration of the call.
-                </p>
-              </div>
-              <div className="mt-10 flex justify-center">
-                <img
-                  src="/assets/Arrow.png"
-                  alt="Next step"
-                  className="h-28 w-auto sm:h-32"
-                />
-              </div>
+          {/* Step 2 */}
+          <section className="sales-slide snap-start flex items-center justify-center px-4 sm:px-6" style={darkFrame}>
+            <div className="w-full max-w-[980px] px-4 py-8 text-center sm:px-10 sm:py-10">
+              <p className="text-xl font-extrabold uppercase text-brand sm:text-4xl">Step 2 : Optimize your environment</p>
+              <p className="mt-4 text-base leading-relaxed text-[#c8c8c8] sm:text-2xl">
+                Plan to be in a quiet, distraction-free space with your camera turned ON for the duration of the call.
+              </p>
             </div>
           </section>
 
-          <section className="snap-start scroll-mt-14 sm:scroll-mt-16 min-h-[calc(100vh-56px)] flex items-center justify-center px-4 py-10 sm:px-6">
-            <div className="w-full max-w-[980px]">
-              <div className="mx-auto w-full max-w-[1500px] px-6 py-12 text-center sm:px-14 sm:py-16">
-                <p className="text-xl font-extrabold uppercase tracking-[0.16em] text-brand sm:text-4xl">Step 3 : Prepare for value</p>
-                <p className="mt-6 text-base leading-relaxed text-[#c8c8c8] sm:text-2xl">
-                  Come ready to focus and have a notepad or app open to take notes during our strategy session.
-                </p>
-              </div>
-              <div className="mt-10 flex justify-center">
-                <img
-                  src="/assets/Arrow.png"
-                  alt="Next step"
-                  className="h-28 w-auto sm:h-32"
-                />
-              </div>
+          {/* Step 3 */}
+          <section className="sales-slide snap-start flex items-center justify-center px-4 sm:px-6" style={darkFrame}>
+            <div className="w-full max-w-[980px] px-4 py-8 text-center sm:px-10 sm:py-10">
+              <p className="text-xl font-extrabold uppercase text-brand sm:text-4xl">Step 3 : Prepare for value</p>
+              <p className="mt-4 text-base leading-relaxed text-[#c8c8c8] sm:text-2xl">
+                Come ready to focus and have a notepad or app open to take notes during our strategy session.
+              </p>
             </div>
           </section>
 
-          <section className="snap-start scroll-mt-14 sm:scroll-mt-16 min-h-[calc(100vh-56px)] flex items-center justify-center px-4 py-12 sm:px-6">
+          {/* Final / thank you */}
+          <section className="sales-slide snap-start flex items-center justify-center px-4 py-8 sm:px-6" style={darkFrame}>
             <div className="w-full max-w-[980px] text-center">
               <div className="w-full rounded-smooth border border-white/10 bg-[#202020] p-6 shadow-[0_18px_50px_rgba(0,0,0,0.35)] backdrop-blur sm:p-10">
                 <p className="text-sm leading-relaxed text-[#d4d4d4] sm:text-lg">
                   Please be prepared with any relevant information or questions so we can make the most of our time together.
                 </p>
-                <p className="mt-4 text-sm font-semibold text-brand sm:mt-5 sm:text-lg">
+                <p className="mt-3 text-sm font-semibold text-brand sm:mt-4 sm:text-lg">
                   We look forward to speaking with you and welcoming you onboard.
                 </p>
               </div>
 
-              <div className="mt-10">
+              <div className="mt-8">
                 <p className="text-2xl font-extrabold uppercase text-brand sm:text-3xl">Thank you for scheduling a meeting with us!</p>
                 <p className="mt-2 text-sm text-[#c8c8c8]">Your meeting has been successfully scheduled.</p>
               </div>
 
-              <div className="mt-12 w-full text-center">
+              <div className="mt-8 w-full text-center">
                 <p className="text-xs font-semibold text-[#c8c8c8] sm:text-sm">Follow Us On Our Socials</p>
                 <div className="mt-3 flex items-center justify-center gap-6">
                   <a href="#" className="text-brand transition-all hover:scale-110 hover:text-[#CC3F08]" aria-label="Instagram">
@@ -148,6 +127,7 @@ export default function ThankYou() {
             </div>
           </section>
         </div>
+        <SectionArrow />
       </main>
     </>
   );

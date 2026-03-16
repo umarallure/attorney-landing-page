@@ -48,9 +48,41 @@
 
   /* Slides should be sized to the visible viewport area below the fixed header. */
   .sales-slide {
+    position: relative;
+    isolation: isolate;
     min-height: calc(100vh - var(--sales-header));
     min-height: calc(100dvh - var(--sales-header));
     scroll-margin-top: var(--sales-header);
+  }
+
+  /* Rounded-rectangle "frame" applied to every sales slide. */
+  .sales-slide::before,
+  .sales-slide::after {
+    content: '';
+    position: absolute;
+    pointer-events: none;
+    inset: clamp(10px, 2.2vw, 18px);
+    border-radius: 22px;
+  }
+
+  /* Subtle card surface behind content (so the frame reads even over images). */
+  .sales-slide::before {
+    z-index: -1;
+    background: var(--sales-frame-surface, rgba(255, 255, 255, 0.28));
+  }
+
+  /* Border + shadow on top of the slide content. */
+  .sales-slide::after {
+    z-index: 10;
+    border: 1px solid var(--sales-frame-border, rgba(17, 17, 17, 0.16));
+    box-shadow:
+      0 18px 55px var(--sales-frame-shadow, rgba(0, 0, 0, 0.18)),
+      inset 0 0 0 1px var(--sales-frame-highlight, rgba(255, 255, 255, 0.36));
+  }
+
+  /* Opt-out helpers for slides that should not have a filled surface behind content. */
+  .sales-slide-no-surface {
+    --sales-frame-surface: transparent;
   }
 }
 

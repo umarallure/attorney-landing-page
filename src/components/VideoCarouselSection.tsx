@@ -191,31 +191,35 @@ export default function VideoCarouselSection() {
     });
   }, []);
 
-  // Start when section comes into view AND first URL is ready
+  // Start marquee when section comes into view.
+  // Do not block on URLs: the strip should feel "alive" immediately, and
+  // videos will begin playing as soon as their URLs load.
   useEffect(() => {
     const section = sectionRef.current;
-    if (!section || hasStartedRef.current || !videoUrls[0]) return;
+    if (!section || hasStartedRef.current) return;
 
-    const tryStart = () => {
+    let observer: IntersectionObserver | null = null;
+
+    const start = () => {
       if (hasStartedRef.current) return;
-      const rect = section.getBoundingClientRect();
-      if (rect.top < window.innerHeight * 0.8 && rect.bottom > 0) {
-        hasStartedRef.current = true;
-        playAllMuted();
-        loadRemainingVideos();
-        observer.disconnect();
-      }
+      hasStartedRef.current = true;
+      playAllMuted();
+      observer?.disconnect();
+      observer = null;
     };
 
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) tryStart(); },
-      { threshold: 0.2 }
-    );
-    observer.observe(section);
-    tryStart(); // also check immediately if already visible
+    observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) start();
+    }, { threshold: 0.15 });
 
-    return () => observer.disconnect();
-  }, [playAllMuted, loadRemainingVideos, videoUrls]);
+    observer.observe(section);
+
+    // Immediate visibility check for the common "already in view on load" case.
+    const rect = section.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) start();
+
+    return () => observer?.disconnect();
+  }, [playAllMuted]);
 
   // Auto-start newly loaded videos while marquee is running
   useEffect(() => {

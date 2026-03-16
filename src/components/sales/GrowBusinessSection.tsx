@@ -20,7 +20,7 @@ export default function GrowBusinessSection() {
         </p>
 
         <div className="mt-7 flex justify-center sm:mt-10">
-          <div className="max-w-[980px] bg-brand px-2 py-2 text-center text-[clamp(22px,6vw,30px)] font-extrabold uppercase leading-none tracking-[0.04em] text-[#d9d9d9] sm:text-7xl">
+          <div className="max-w-[1000px] bg-brand px-2 py-2 text-center text-[clamp(22px,6vw,30px)] font-extrabold uppercase leading-none tracking-[0.04em] text-[#d9d9d9] sm:text-7xl">
             SO HOW DOES IT WORK
           </div>
         </div>
