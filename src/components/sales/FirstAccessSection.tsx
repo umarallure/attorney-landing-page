@@ -3,6 +3,9 @@ export default function FirstAccessSection() {
     <section className="relative snap-start sales-slide flex w-full items-center justify-center px-4 py-6 sm:px-10 sm:py-10">
       <div className="w-full max-w-[1200px] text-center">
         <div className="mx-auto flex w-full max-w-[980px] flex-col items-center">
+          <p className="mb-4 text-[20px] font-extrabold uppercase leading-[1.15] text-brand sm:mb-6 sm:text-[34px]">
+            Quit Buying Leads<br />Start Receiving Signed Cases
+          </p>
           <img
             src="/assets/computer.png"
             alt="Accident Payments preview"

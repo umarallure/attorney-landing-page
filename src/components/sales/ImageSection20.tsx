@@ -1,12 +1,34 @@
 export default function ImageSection20() {
   return (
-    <section className="relative snap-start sales-slide w-full overflow-hidden">
-      <img
-        src="/assets/20.png"
-        alt="Accident Payments"
-        className="absolute inset-0 h-full w-full object-cover"
-        loading="lazy"
-      />
+    <section
+      className="relative snap-start sales-slide sales-slide-no-surface flex w-full items-center justify-center px-4 py-6 sm:px-10 sm:py-10"
+      style={{ height: 'calc(100dvh - var(--sales-header))' }}
+    >
+      <div className="flex w-full max-w-[1400px] flex-col items-center text-center text-[#111]">
+        <p className="mx-auto max-w-[980px] text-[clamp(22px,5.2vw,44px)] font-extrabold uppercase leading-none tracking-[0.04em] text-brand">
+          Targeted Intake<br />100% Exclusive
+        </p>
+        <p className="mx-auto mt-1 max-w-[980px] text-[clamp(14px,3.2vw,20px)] font-semibold leading-snug text-[#111]/80 sm:mt-2">
+          Pick your states and monitor firm growth in real-time.
+        </p>
+
+        <div className="mt-3 w-full sm:mt-6">
+          {/* Desktop/tablet */}
+          <img
+            src="/assets/20.png"
+            alt="Intake map preview"
+            className="hidden w-full max-w-[1320px] object-contain sm:block"
+            loading="lazy"
+          />
+          {/* Mobile */}
+          <img
+            src="/assets/intake-(mobile).png"
+            alt="Intake map preview (mobile)"
+            className="mx-auto block h-[68vh] w-auto max-w-[92%] object-contain sm:hidden"
+            loading="lazy"
+          />
+        </div>
+      </div>
     </section>
   );
 }

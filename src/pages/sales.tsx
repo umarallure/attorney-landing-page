@@ -1,5 +1,4 @@
 import Head from 'next/head';
-
 import Header from '../components/Header';
 import SectionArrow from '../components/sales/SectionArrow';
 // import LoomVideoSection from '../components/sales/LoomVideoSection';
