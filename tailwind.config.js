@@ -11,6 +11,7 @@ module.exports = {
       },
       fontFamily: {
         mont: ['"Montserrat"', 'system-ui', 'sans-serif'],
+        anton: ['"Anton"', 'sans-serif'],
       },
       borderRadius: {
         pill: '999px',

@@ -14,7 +14,7 @@ export default function TraditionalVsSignedSection() {
 
               <div className="mt-6">
                 <p className="text-[22px] font-extrabold uppercase leading-[1.05] tracking-[0.04em] text-brand sm:text-[32px]">
-                  TRANDITIONAL
+                  TRADITIONAL
                   <br />
                   ADVERTISING
                 </p>

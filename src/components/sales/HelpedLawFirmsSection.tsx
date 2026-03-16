@@ -8,7 +8,7 @@ export default function HelpedLawFirmsSection() {
               <p className="text-2xl font-extrabold uppercase tracking-wide text-[#111] sm:text-3xl">
                 WE HAVE HELPED OVER
               </p>
-              <p className="mt-4 text-[120px] font-extrabold leading-none text-brand sm:text-[160px] md:text-[190px]">
+              <p className="font-anton mt-4 text-[120px] leading-none text-brand sm:text-[160px] md:text-[190px]">
                 150
               </p>
               <p className="mt-4 text-2xl font-extrabold uppercase tracking-wide text-[#111] sm:text-3xl">

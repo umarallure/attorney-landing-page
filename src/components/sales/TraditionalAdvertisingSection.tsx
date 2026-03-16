@@ -11,7 +11,7 @@ export default function TraditionalAdvertisingSection() {
           />
 
           <p className="mt-8 text-[22px] font-extrabold uppercase leading-[1.05] tracking-[0.04em] text-brand sm:text-[30px] md:text-[34px]">
-            TRANDITIONAL ADVERTISING
+            TRADITIONAL ADVERTISING
           </p>
           <p className="mt-2 text-[16px] font-extrabold uppercase tracking-[0.06em] text-[#111] sm:text-[20px]">
             "OTHER COMPANIES"

@@ -21,13 +21,13 @@ export default function HowItWorksSection() {
       <div className="mx-auto w-[min(1200px,94vw)] px-4 text-center">
         <div className="mx-auto flex max-w-3xl flex-col items-center">
           <h2 className="relative inline-block pr-[0.9em] text-[#f6f6f6] leading-[0.9]">
-            <span className="block text-[clamp(44px,6.2vw,60px)] font-medium">HOW IT</span>
-            <span className="block text-[clamp(56px,7.2vw,50px)] font-extrabold">WORKS</span>
-            <span className="pointer-events-none absolute -right-[0.5em] top-1/2 -translate-y-1/2 text-[clamp(92px,10.5vw,120px)] font-extrabold leading-none">
+            <span className="block text-[36px] sm:text-[clamp(44px,6.2vw,60px)] font-medium">HOW IT</span>
+            <span className="block text-[44px] sm:text-[clamp(56px,7.2vw,50px)] font-extrabold">WORKS</span>
+            <span className="pointer-events-none absolute -right-[0.5em] top-1/2 -translate-y-1/2 text-[76px] sm:text-[clamp(92px,10.5vw,120px)] font-extrabold leading-none">
               ?
             </span>
           </h2>
-          <p className="mt-4 text-sm sm:text-base font-semibold text-[#f6f6f6]">
+          <p className="mt-4 text-sm sm:text-lg font-semibold text-[#f6f6f6]">
             From <span className="font-extrabold">Sign-Up</span> to <span className="font-extrabold">Signed Cases</span> - Simple, Transparent, Effective
           </p>
         </div>
@@ -97,11 +97,13 @@ export default function HowItWorksSection() {
         </div>
 
         <div className="mx-auto mt-14 w-full max-w-[820px] text-center text-[#f6f6f6]">
-          <p className="text-[26px] font-medium uppercase leading-none tracking-[0.08em] sm:text-[32px]">HOW WE</p>
-          <p className="mt-1 text-[30px] font-extrabold uppercase leading-none tracking-[0.08em] sm:text-[38px]">
-            SIGN CASES{' '}
-            <span className="align-top text-[34px] font-extrabold leading-none sm:text-[44px]">?</span>
-          </p>
+          <h2 className="relative inline-block pr-[0.9em] text-[#f6f6f6] leading-[0.9]">
+            <span className="block text-[36px] sm:text-[clamp(44px,6.2vw,60px)] font-medium">HOW WE</span>
+            <span className="block text-[44px] sm:text-[clamp(56px,7.2vw,50px)] font-extrabold">SIGN CASES</span>
+            <span className="pointer-events-none absolute -right-[0.5em] top-1/2 -translate-y-1/2 text-[76px] sm:text-[clamp(92px,10.5vw,120px)] font-extrabold leading-none">
+              ?
+            </span>
+          </h2>
 
           <p className="mt-6 text-[14px] font-semibold sm:text-[16px]">Every case goes through a structured process:</p>
 
