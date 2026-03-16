@@ -26,7 +26,7 @@ export default function VideoCarouselSection() {
   const stripRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const hasStartedRef = useRef(false);
-  const hasQueuedRemainingRef = useRef(false);
+  const isLoadingRemainingRef = useRef(false);
   const isResumingRef = useRef(false);
   // The translateX the strip was at when a video was clicked (to resume from there)
   const frozenTranslateXRef = useRef(0);
@@ -70,28 +70,46 @@ export default function VideoCarouselSection() {
   }, []);
 
   const loadRemainingVideos = useCallback(async () => {
-    if (hasQueuedRemainingRef.current) return;
-    hasQueuedRemainingRef.current = true;
-    for (let i = 1; i < VIDEO_COUNT; i++) {
-      try {
-        const url = await fetchVideoUrl(videoPublicIds[i]);
-        setVideoUrlAtIndex(i, url);
-      } catch (err) {
-        console.error(`Failed to load video ${i}`, err);
+    if (isLoadingRemainingRef.current) return;
+    isLoadingRemainingRef.current = true;
+    try {
+      for (let i = 1; i < VIDEO_COUNT; i++) {
+        if (videoUrls[i]) continue;
+        try {
+          const url = await fetchVideoUrl(videoPublicIds[i]);
+          setVideoUrlAtIndex(i, url);
+        } catch (err) {
+          console.error(`Failed to load video ${i}`, err);
+        }
       }
+    } finally {
+      isLoadingRemainingRef.current = false;
     }
-  }, [fetchVideoUrl, setVideoUrlAtIndex, videoPublicIds]);
+  }, [fetchVideoUrl, setVideoUrlAtIndex, videoPublicIds, videoUrls]);
 
   useEffect(() => {
     let isMounted = true;
     (async () => {
       try {
         setIsLoadingVideos(true);
-        const url = await fetchVideoUrl(videoPublicIds[0]);
-        if (isMounted) {
-          setVideoUrlAtIndex(0, url);
-          setIsLoadingVideos(false);
-        }
+        // 1) Load the first video ASAP (so there's something to render immediately).
+        const firstUrl = await fetchVideoUrl(videoPublicIds[0]);
+        if (!isMounted) return;
+        setVideoUrlAtIndex(0, firstUrl);
+
+        // 2) Prefetch the remaining video URLs right away so the other tiles don't look empty.
+        // This only fetches a tiny JSON response per video (the actual video bytes are controlled by <video preload>).
+        const results = await Promise.allSettled(
+          videoPublicIds.slice(1).map((id) => fetchVideoUrl(id))
+        );
+        if (!isMounted) return;
+        results.forEach((res, idx) => {
+          const i = idx + 1;
+          if (res.status === 'fulfilled') setVideoUrlAtIndex(i, res.value);
+          else console.error(`Failed to load video ${i}`, res.reason);
+        });
+
+        setIsLoadingVideos(false);
       } catch (err) {
         console.error('Failed to load first video', err);
         if (isMounted) setIsLoadingVideos(false);
@@ -319,42 +337,44 @@ export default function VideoCarouselSection() {
           const isActive = activeBaseIndex === baseIndex;
           const isDimmed = activeBaseIndex !== null && !isActive;
 
-          return (
-            <div
-              key={refIndex}
-              onClick={(e) => handleVideoClick(refIndex, e.currentTarget as HTMLDivElement)}
-              className={`relative flex-shrink-0 cursor-pointer overflow-hidden rounded-xl transition-opacity duration-300 ${
-                isDimmed ? 'opacity-30' : 'opacity-100'
-              }`}
-              style={{
-                width: 'clamp(260px, 42vw, 720px)',
-                aspectRatio: '16/9',
-              }}
-            >
-              {src ? (
-                <video
-                  ref={(el) => { videoRefs.current[refIndex] = el; }}
-                  src={src}
-                  className="h-full w-full object-cover"
-                  playsInline
-                  muted
-                  loop
-                  preload={baseIndex === 0 && refIndex === 0 ? 'metadata' : 'none'}
-                  poster={posterUrl ?? undefined}
-                  onEnded={() => handleVideoEnded(refIndex)}
-                  {...(baseIndex === 0 && refIndex === 0
-                    ? ({ fetchpriority: 'high' } as Record<string, string>)
-                    : {})}
-                />
-              ) : (
-                <div className="flex h-full w-full items-center justify-center bg-black/10">
-                  {isLoadingVideos && baseIndex === 0 && (
-                    <span className="text-xs uppercase tracking-[0.2em] text-[#111]/30">
-                      Loading…
-                    </span>
-                  )}
-                </div>
-              )}
+	          return (
+	            <div
+	              key={refIndex}
+	              onClick={(e) => handleVideoClick(refIndex, e.currentTarget as HTMLDivElement)}
+	              className={`relative flex-shrink-0 cursor-pointer overflow-hidden rounded-xl transition-opacity duration-300 ${
+	                isDimmed ? 'opacity-30' : 'opacity-100'
+	              }`}
+	              style={{
+	                width: 'clamp(260px, 42vw, 720px)',
+	                aspectRatio: '16/9',
+	              }}
+	            >
+	              {src ? (
+	                <video
+	                  ref={(el) => { videoRefs.current[refIndex] = el; }}
+	                  src={src}
+	                  className="h-full w-full object-cover"
+	                  playsInline
+	                  muted
+	                  loop
+	                  // Preload metadata for the 3 originals so all thumbnails look "ready" immediately.
+	                  // Clones (refIndex >= VIDEO_COUNT) use preload="none" to avoid redundant work.
+	                  preload={refIndex < VIDEO_COUNT ? 'metadata' : 'none'}
+	                  poster={posterUrl ?? undefined}
+	                  onEnded={() => handleVideoEnded(refIndex)}
+	                  {...(baseIndex === 0 && refIndex === 0
+	                    ? ({ fetchpriority: 'high' } as Record<string, string>)
+	                    : {})}
+	                />
+	              ) : (
+	                <div className="flex h-full w-full items-center justify-center bg-black/10">
+	                  {isLoadingVideos && (
+	                    <span className="text-xs uppercase tracking-[0.2em] text-[#111]/30">
+	                      Loading…
+	                    </span>
+	                  )}
+	                </div>
+	              )}
 
               {/* Hover play hint */}
               {src && activeBaseIndex === null && (
