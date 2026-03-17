@@ -11,13 +11,20 @@ export default function SectionArrow() {
     if (!scroller || !lastSlide) return;
 
     const updateHidden = () => {
+      const atTop = scroller.scrollTop <= 12;
       const rootRect = scroller.getBoundingClientRect();
       const slideRect = lastSlide.getBoundingClientRect();
       const visibleTop = Math.max(rootRect.top, slideRect.top);
       const visibleBottom = Math.min(rootRect.bottom, slideRect.bottom);
       const visibleHeight = Math.max(0, visibleBottom - visibleTop);
       const ratio = slideRect.height > 0 ? visibleHeight / slideRect.height : 0;
-      setHidden(ratio >= 0.85);
+      const atEnd = ratio >= 0.85;
+      setHidden(atTop || atEnd);
+    };
+
+    const updateHiddenWithAtEnd = (atEnd: boolean) => {
+      const atTop = scroller.scrollTop <= 12;
+      setHidden(atTop || atEnd);
     };
 
     updateHidden();
@@ -33,7 +40,7 @@ export default function SectionArrow() {
       const observer = new IntersectionObserverCtor(
         ([entry]) => {
           const mostlyVisible = entry.isIntersecting && entry.intersectionRatio >= 0.85;
-          setHidden(mostlyVisible);
+          updateHiddenWithAtEnd(mostlyVisible);
         },
         {
           root: scroller,
@@ -42,7 +49,14 @@ export default function SectionArrow() {
       );
 
       observer.observe(lastSlide);
-      return () => observer.disconnect();
+      scroller.addEventListener('scroll', updateHidden, { passive: true });
+      window.addEventListener('resize', updateHidden);
+
+      return () => {
+        observer.disconnect();
+        scroller.removeEventListener('scroll', updateHidden);
+        window.removeEventListener('resize', updateHidden);
+      };
     }
 
     scroller.addEventListener('scroll', updateHidden, { passive: true });
