@@ -2,8 +2,8 @@ export default function WantMoreCasesSection() {
   return (
     <section className="relative snap-start sales-slide flex w-full items-center justify-center px-4 py-6 sm:px-10 sm:py-14">
       <div className="w-full max-w-[1200px] text-center text-[#111]">
-        <p className="text-[clamp(24px,7vw,30px)] font-extrabold uppercase tracking-wide sm:text-4xl md:text-5xl">
-          YOU WANT MORE CASES?
+        <p className="sales-heading text-[#111]">
+          You Want More Cases?
         </p>
 
         <div className="mx-auto mt-7 grid max-w-[1050px] grid-cols-1 gap-7 sm:mt-10 sm:grid-cols-3 sm:gap-8 md:mt-14 md:gap-12">
@@ -14,10 +14,10 @@ export default function WantMoreCasesSection() {
               className="h-20 w-20 object-contain sm:h-28 sm:w-28 md:h-32 md:w-32"
               loading="lazy"
             />
-            <p className="mt-4 text-[16px] font-extrabold uppercase leading-tight tracking-wide sm:text-2xl">
-              ONLINE
+            <p className="mt-4 text-[16px] font-extrabold leading-tight tracking-wide sm:text-2xl">
+              Online
               <br />
-              ADVERTISING
+              Advertising
             </p>
           </div>
 
@@ -28,10 +28,10 @@ export default function WantMoreCasesSection() {
               className="h-20 w-20 object-contain sm:h-28 sm:w-28 md:h-32 md:w-32"
               loading="lazy"
             />
-            <p className="mt-4 text-[16px] font-extrabold uppercase leading-tight tracking-wide sm:text-2xl">
-              REAL-TIME &amp;
+            <p className="mt-4 text-[16px] font-extrabold leading-tight tracking-wide sm:text-2xl">
+              Real-Time &amp;
               <br />
-              EXCLUSIVE
+              Exclusive
             </p>
           </div>
 
@@ -42,10 +42,10 @@ export default function WantMoreCasesSection() {
               className="h-20 w-20 object-contain sm:h-28 sm:w-28 md:h-32 md:w-32"
               loading="lazy"
             />
-            <p className="mt-4 text-[16px] font-extrabold uppercase leading-tight tracking-wide sm:text-2xl">
-              PRE-
+            <p className="mt-4 text-[16px] font-extrabold leading-tight tracking-wide sm:text-2xl">
+              Pre-
               <br />
-              QUALIFIED
+              Qualified
             </p>
           </div>
         </div>

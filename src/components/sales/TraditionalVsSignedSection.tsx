@@ -12,19 +12,19 @@ export default function TraditionalVsSignedSection() {
             />
 
             <div className="mt-5 sm:mt-6">
-              <p className="text-[20px] font-extrabold uppercase leading-[1.05] tracking-[0.04em] text-brand sm:text-[32px]">
-                TRADITIONAL
+              <p className="sales-heading text-brand">
+                Traditional
                 <br />
-                ADVERTISING
+                Advertising
               </p>
-              <p className="mt-2 text-[14px] font-extrabold uppercase tracking-[0.06em] text-[#111] sm:text-[24px]">
-                "OTHER COMPANIES"
+              <p className="mt-2 text-[14px] font-extrabold tracking-[0.06em] text-[#111] sm:text-[24px]">
+                "Other Companies"
               </p>
             </div>
           </div>
 
           <div className="flex items-center justify-center">
-            <span className="text-[20px] font-extrabold uppercase tracking-[0.04em] text-[#111] sm:text-[26px]">vs.</span>
+            <span className="text-[20px] font-extrabold tracking-[0.04em] text-[#111] sm:text-[26px]">vs.</span>
           </div>
 
           <div className="flex flex-col items-center">
@@ -36,10 +36,10 @@ export default function TraditionalVsSignedSection() {
             />
 
             <div className="mt-5 text-center sm:mt-6">
-              <p className="text-[20px] font-extrabold uppercase leading-[1.05] tracking-[0.04em] text-brand sm:text-[32px]">
-                SIGNED
+              <p className="sales-heading text-brand">
+                Signed
                 <br />
-                RETAINERS
+                Retainers
               </p>
               <a href="/" className="mt-3 inline-flex items-center">
                 <img

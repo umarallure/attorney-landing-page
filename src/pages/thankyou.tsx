@@ -32,7 +32,7 @@ export default function ThankYou() {
       >
         <Header
           secondaryHref="/"
-          secondaryLabel="HOME"
+          secondaryLabel="Home"
           secondaryIcon="home"
           primaryHref="/#booking"
           position="fixed"
@@ -87,7 +87,7 @@ export default function ThankYou() {
           </section>
 
           {/* Final / thank you */}
-          <section className="sales-slide snap-start flex items-center justify-center px-4 py-8 sm:px-6" style={darkFrame}>
+          <section className="sales-slide snap-start flex items-center justify-center px-4 py-8 sm:px-6" style={darkFrame} data-sales-last-slide>
             <div className="w-full max-w-[980px] text-center">
               <div className="w-full rounded-smooth border border-white/10 bg-[#202020] p-6 shadow-[0_18px_50px_rgba(0,0,0,0.35)] backdrop-blur sm:p-10">
                 <p className="text-sm leading-relaxed text-[#d4d4d4] sm:text-lg">

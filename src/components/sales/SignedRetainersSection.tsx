@@ -7,7 +7,7 @@ export default function SignedRetainersSection() {
             <div className="flex min-h-[44px] items-center justify-center rounded-none bg-[#111] px-3 py-2 text-center text-[13px] font-extrabold text-white sm:min-h-[80px] sm:px-6 sm:py-4 sm:text-[18px]">
               Actively Searching
               <br />
-              for your Service
+              for Your Service
             </div>
             <div className="flex min-h-[44px] items-center justify-center rounded-none bg-[#111] px-3 py-2 text-center text-[13px] font-extrabold text-white sm:min-h-[80px] sm:px-6 sm:py-4 sm:text-[18px]">
               Low Cancellation Rate
@@ -26,24 +26,24 @@ export default function SignedRetainersSection() {
               Fixed Rate Pricing
             </div>
             <div className="flex min-h-[44px] items-center justify-center rounded-none bg-[#111] px-3 py-2 text-center text-[13px] font-extrabold text-white sm:min-h-[80px] sm:px-6 sm:py-4 sm:text-[18px]">
-              Zip code Specific
+              Zip Code Specific
             </div>
 
             <div className="flex min-h-[44px] items-center justify-center rounded-none bg-[#111] px-3 py-2 text-center text-[13px] font-extrabold text-white sm:min-h-[80px] sm:px-6 sm:py-4 sm:text-[18px]">
               High Quality
             </div>
             <div className="flex min-h-[44px] items-center justify-center rounded-none bg-[#111] px-3 py-2 text-center text-[13px] font-extrabold text-white sm:min-h-[80px] sm:px-6 sm:py-4 sm:text-[18px]">
-              Control of your
+              Control of Your
               <br />
               Lead Flow
             </div>
           </div>
 
           <div className="order-1 mx-auto flex w-full max-w-[420px] flex-col items-center text-center text-[#111] md:order-2">
-            <p className="text-[28px] font-extrabold uppercase leading-[0.95] tracking-[0.02em] text-brand sm:text-[50px]">
-              SIGNED
+            <p className="sales-heading text-brand">
+              Signed
               <br />
-              RETAINERS
+              Retainers
             </p>
 
             <a href="/" className="mt-2 inline-flex items-center">
@@ -55,8 +55,8 @@ export default function SignedRetainersSection() {
               />
             </a>
 
-            <p className="mt-2 text-[13px] font-extrabold uppercase tracking-[0.06em] text-[#111] sm:mt-3 sm:text-xl">
-              PROVIDES YOUR LAW FIRM
+            <p className="mt-2 text-[13px] font-extrabold tracking-[0.04em] text-[#111] sm:mt-3 sm:text-xl">
+              Provides Your Law Firm
             </p>
 
             <img

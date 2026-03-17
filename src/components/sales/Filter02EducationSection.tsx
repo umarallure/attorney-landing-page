@@ -9,11 +9,11 @@ export default function Filter02EducationSection() {
           loading="lazy"
         />
 
-        <p className="mt-4 text-[16px] font-extrabold uppercase tracking-wide sm:text-2xl">
-          FILTER #02
+        <p className="mt-4 text-[16px] font-extrabold tracking-wide sm:text-2xl">
+          Filter #02
         </p>
-        <p className="mt-1 text-[28px] font-extrabold uppercase tracking-wide text-brand sm:text-4xl md:text-5xl">
-          EDUCATION
+        <p className="sales-heading mt-1 text-brand">
+          Education
         </p>
 
         <p className="mx-auto mt-4 max-w-[980px] text-[14px] font-extrabold leading-snug sm:text-xl md:text-2xl">

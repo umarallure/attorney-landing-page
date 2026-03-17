@@ -9,17 +9,17 @@ export default function TraditionalAdvertisingSection() {
           loading="lazy"
         />
 
-        <p className="mt-6 text-[20px] font-extrabold uppercase leading-[1.05] tracking-[0.04em] text-brand sm:mt-8 sm:text-[30px] md:text-[34px]">
-          TRADITIONAL ADVERTISING
+        <p className="sales-heading mt-6 text-brand sm:mt-8">
+          Traditional Advertising
         </p>
-        <p className="mt-2 text-[14px] font-extrabold uppercase tracking-[0.06em] text-[#111] sm:text-[20px]">
-          "OTHER COMPANIES"
+        <p className="mt-2 text-[14px] font-extrabold tracking-[0.06em] text-[#111] sm:text-[20px]">
+          "Other Companies"
         </p>
 
         <p className="mt-6 text-[14px] font-semibold leading-relaxed text-[#111] sm:mt-8 sm:text-[20px]">
-          Standard Marketing Agencies, Lead Generation Comapanies
+          Standard marketing agencies and lead generation companies
           <br />
-          Are Currently Using...
+          are currently using...
         </p>
 
         <div className="mt-7 flex flex-col items-center gap-3 sm:mt-10 sm:gap-5">
@@ -30,8 +30,8 @@ export default function TraditionalAdvertisingSection() {
               className="h-7 w-7 object-contain sm:h-10 sm:w-10"
               loading="lazy"
             />
-            <span className="text-[15px] font-extrabold uppercase tracking-[0.03em] text-[#111] sm:text-[22px]">
-              BILLBOARD ADVERTISING
+            <span className="text-[15px] font-extrabold tracking-[0.03em] text-[#111] sm:text-[22px]">
+              Billboard Advertising
             </span>
           </div>
 
@@ -42,8 +42,8 @@ export default function TraditionalAdvertisingSection() {
               className="h-7 w-7 object-contain sm:h-10 sm:w-10"
               loading="lazy"
             />
-            <span className="text-[15px] font-extrabold uppercase tracking-[0.03em] text-[#111] sm:text-[22px]">
-              RADIO ADVERTISING
+            <span className="text-[15px] font-extrabold tracking-[0.03em] text-[#111] sm:text-[22px]">
+              Radio Advertising
             </span>
           </div>
 
@@ -54,8 +54,8 @@ export default function TraditionalAdvertisingSection() {
               className="h-7 w-7 object-contain sm:h-10 sm:w-10"
               loading="lazy"
             />
-            <span className="text-[15px] font-extrabold uppercase tracking-[0.03em] text-[#111] sm:text-[22px]">
-              TELEVISION ADVERTISING
+            <span className="text-[15px] font-extrabold tracking-[0.03em] text-[#111] sm:text-[22px]">
+              Television Advertising
             </span>
           </div>
         </div>

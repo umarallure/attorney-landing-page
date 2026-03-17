@@ -30,7 +30,7 @@ export default function SalesPage() {
       </Head>
 
       <main className="sales-viewport bg-[#d9d9d9] text-[#111]">
-        <Header secondaryHref="/" secondaryLabel="HOME" secondaryIcon="home" primaryHref="/#booking" position="fixed" />
+        <Header secondaryHref="/" secondaryLabel="Home" secondaryIcon="home" primaryHref="/#booking" position="fixed" />
         <div className="sales-viewport sales-scroll overflow-y-auto snap-y snap-mandatory">
           {/* <LoomVideoSection /> */}
           {/* <SectionArrow /> */}

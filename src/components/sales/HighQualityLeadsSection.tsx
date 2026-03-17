@@ -13,16 +13,16 @@ export default function HighQualityLeadsSection() {
           </div>
 
           <div className="text-center md:text-left">
-            <p className="text-[clamp(34px,9vw,48px)] font-extrabold uppercase tracking-wide text-brand sm:text-6xl md:text-7xl">
-              HIGH QUALITY
+            <p className="sales-heading text-brand">
+              High Quality
             </p>
-            <p className="mt-2 text-[18px] font-extrabold uppercase tracking-wide text-brand sm:text-3xl md:text-4xl">
-              SEARCH-ENGINE-DRIVEN LEADS
+            <p className="mt-2 text-[18px] font-extrabold tracking-wide text-brand sm:text-3xl md:text-4xl">
+              Search-Engine-Driven Leads
             </p>
-            <p className="mt-2 text-[18px] font-extrabold uppercase tracking-wide text-[#111] sm:text-3xl md:text-4xl">
-              GENERATED FROM USERS ACTIVELY
+            <p className="mt-2 text-[18px] font-extrabold tracking-wide text-[#111] sm:text-3xl md:text-4xl">
+              Generated From Users Actively
               <br />
-              LOOKING FOR YOUR SERVICES
+              Looking for Your Services
             </p>
           </div>
         </div>

@@ -9,11 +9,11 @@ export default function Filter03QualificationSection() {
           loading="lazy"
         />
 
-        <p className="mt-4 text-[16px] font-extrabold uppercase tracking-wide sm:text-2xl">
-          FILTER #03
+        <p className="mt-4 text-[16px] font-extrabold tracking-wide sm:text-2xl">
+          Filter #03
         </p>
-        <p className="mt-1 text-[28px] font-extrabold uppercase tracking-wide text-brand sm:text-4xl md:text-5xl">
-          QUALIFICATION
+        <p className="sales-heading mt-1 text-brand">
+          Qualification
         </p>
 
         <p className="mx-auto mt-4 max-w-[980px] text-[14px] font-extrabold leading-snug sm:text-xl md:text-2xl">
