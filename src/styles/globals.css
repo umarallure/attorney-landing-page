@@ -37,7 +37,8 @@
     --sales-header: 56px;
     padding-top: var(--sales-header);
     scroll-padding-top: var(--sales-header);
-    padding-bottom: env(safe-area-inset-bottom);
+    /* Add bottom breathing room so the final slide can fully snap into place. */
+    padding-bottom: calc(var(--sales-header) + env(safe-area-inset-bottom));
   }
 
   @media (min-width: 640px) {
