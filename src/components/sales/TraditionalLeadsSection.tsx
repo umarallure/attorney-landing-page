@@ -12,16 +12,16 @@ export default function TraditionalLeadsSection() {
             />
 
             <div className="mt-4 sm:mt-6">
-              <p className="text-[18px] font-extrabold uppercase leading-[1.05] tracking-[0.04em] text-brand sm:text-[28px]">
-                TRADITIONAL
+              <p className="sales-heading text-brand">
+                Traditional
                 <br />
-                ADVERTISING
+                Advertising
               </p>
-              <p className="mt-2 text-[34px] font-extrabold uppercase leading-[0.95] tracking-[0.02em] text-[#111] sm:text-[56px]">
-                LEADS
+              <p className="sales-heading mt-2 text-[#111]">
+                Leads
               </p>
-              <p className="mt-2 text-[14px] font-extrabold uppercase tracking-[0.06em] text-[#111] sm:text-[18px]">
-                "OTHER COMPANIES"
+              <p className="mt-2 text-[14px] font-extrabold tracking-[0.06em] text-[#111] sm:text-[18px]">
+                "Other Companies"
               </p>
             </div>
           </div>
@@ -40,14 +40,14 @@ export default function TraditionalLeadsSection() {
               Inconsistent Pricing
             </div>
             <div className="flex min-h-[44px] items-center justify-center rounded-none bg-[#111] px-3 py-2 text-center text-[13px] font-extrabold text-white sm:min-h-[80px] sm:px-6 sm:py-4 sm:text-[18px]">
-              Cost Too much
+              Costs Too Much
             </div>
 
             <div className="flex min-h-[44px] items-center justify-center rounded-none bg-[#111] px-3 py-2 text-center text-[13px] font-extrabold text-white sm:min-h-[80px] sm:px-6 sm:py-4 sm:text-[18px]">
               Inconsistent Volume
             </div>
             <div className="flex min-h-[44px] items-center justify-center rounded-none bg-[#111] px-3 py-2 text-center text-[13px] font-extrabold text-white sm:min-h-[80px] sm:px-6 sm:py-4 sm:text-[18px]">
-              Are out of Area
+              Are Out of Area
             </div>
 
             <div className="flex min-h-[44px] items-center justify-center rounded-none bg-[#111] px-3 py-2 text-center text-[13px] font-extrabold text-white sm:min-h-[80px] sm:px-6 sm:py-4 sm:text-[18px]">

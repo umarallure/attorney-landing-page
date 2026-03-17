@@ -1,6 +1,60 @@
+import { useEffect, useState } from 'react';
 import { FaArrowCircleDown } from 'react-icons/fa';
 
 export default function SectionArrow() {
+  const [hidden, setHidden] = useState(false);
+
+  useEffect(() => {
+    const scroller = document.querySelector<HTMLElement>('.sales-scroll');
+    const lastSlide = scroller?.querySelector<HTMLElement>('[data-sales-last-slide]');
+
+    if (!scroller || !lastSlide) return;
+
+    const updateHidden = () => {
+      const rootRect = scroller.getBoundingClientRect();
+      const slideRect = lastSlide.getBoundingClientRect();
+      const visibleTop = Math.max(rootRect.top, slideRect.top);
+      const visibleBottom = Math.min(rootRect.bottom, slideRect.bottom);
+      const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+      const ratio = slideRect.height > 0 ? visibleHeight / slideRect.height : 0;
+      setHidden(ratio >= 0.85);
+    };
+
+    updateHidden();
+
+    const IntersectionObserverCtor = (window as any).IntersectionObserver as
+      | (new (
+          callback: IntersectionObserverCallback,
+          options?: IntersectionObserverInit,
+        ) => IntersectionObserver)
+      | undefined;
+
+    if (IntersectionObserverCtor) {
+      const observer = new IntersectionObserverCtor(
+        ([entry]) => {
+          const mostlyVisible = entry.isIntersecting && entry.intersectionRatio >= 0.85;
+          setHidden(mostlyVisible);
+        },
+        {
+          root: scroller,
+          threshold: [0, 0.5, 0.85, 1],
+        },
+      );
+
+      observer.observe(lastSlide);
+      return () => observer.disconnect();
+    }
+
+    scroller.addEventListener('scroll', updateHidden, { passive: true });
+    window.addEventListener('resize', updateHidden);
+    return () => {
+      scroller.removeEventListener('scroll', updateHidden);
+      window.removeEventListener('resize', updateHidden);
+    };
+  }, []);
+
+  if (hidden) return null;
+
   return (
     <div
       className="pointer-events-none fixed left-1/2 z-30 -translate-x-1/2 text-brand opacity-90"

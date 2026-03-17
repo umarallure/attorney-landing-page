@@ -56,6 +56,20 @@
     scroll-margin-top: var(--sales-header);
   }
 
+  /* Sales page: consistent slide heading sizing across sections. */
+  .sales-heading {
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+  }
+
+  @media (min-width: 640px) {
+    .sales-heading {
+      font-size: 50px;
+    }
+  }
+
   /* Rounded-rectangle "frame" applied to every sales slide. */
   .sales-slide::before,
   .sales-slide::after {

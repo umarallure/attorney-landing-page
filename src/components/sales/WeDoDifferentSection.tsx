@@ -3,7 +3,7 @@ export default function WeDoDifferentSection() {
     <section className="relative snap-start sales-slide flex w-full items-center justify-center px-4 py-6 sm:px-10 sm:py-14">
       <div className="w-full max-w-[1200px] text-center text-[#111]">
         <h2 className="text-[18px] font-extrabold leading-[1.25] sm:text-[28px]">
-          But Here At <span className="text-brand">Accident Payments</span>, We Do Everything Different.
+          But here at <span className="text-brand">Accident Payments</span>, we do everything different.
         </h2>
 
         <img
@@ -13,8 +13,8 @@ export default function WeDoDifferentSection() {
           loading="lazy"
         />
 
-        <p className="mt-5 text-[20px] font-extrabold uppercase leading-[1.05] tracking-[0.04em] text-brand sm:mt-8 sm:text-[30px] md:text-[34px]">
-          SIGNED RETAINERS
+        <p className="sales-heading mt-5 text-brand sm:mt-8">
+          Signed Retainers
         </p>
 
         <a href="/" className="mx-auto inline-flex items-center">
@@ -32,14 +32,14 @@ export default function WeDoDifferentSection() {
             signed cases per day.
           </p>
           <p>
-            We don't do outdated marketing strategies like: Radio, Television, Billboards, or Cold Calling.
+            We don't do outdated marketing strategies like: radio, television, billboards, or cold calling.
           </p>
           <p>
             We don't charge our clients anything upfront or any monthly services fees or term agreements where you have to commit to working with us
             before even provided services.
           </p>
           <p>
-            We fully handle the process for you. We will provide you with the complete signed retainer, including Accident, Injury and police report.
+            We fully handle the process for you. We will provide you with the complete signed retainer, including accident, injury and police report.
             There's no need for your secretary or staff to be involved. You'll only need to submit the retainer on your end, and we'll take care of
             everything else.
           </p>
