@@ -22,7 +22,7 @@ export default function TraditionalAdvertisingSection() {
           are currently using...
         </p>
 
-        <div className="mt-7 flex flex-col items-center gap-3 sm:mt-10 sm:gap-5">
+        <div className="mx-auto mt-7 grid grid-cols-1 justify-items-center gap-3 sm:mt-10 sm:gap-5 md:w-full md:max-w-[980px] md:grid-cols-3 md:gap-12">
           <div className="flex items-center justify-center gap-3">
             <img
               src="/assets/8.png"
@@ -30,7 +30,7 @@ export default function TraditionalAdvertisingSection() {
               className="h-7 w-7 object-contain sm:h-10 sm:w-10"
               loading="lazy"
             />
-            <span className="text-[15px] font-extrabold tracking-[0.03em] text-[#111] sm:text-[22px]">
+            <span className="text-[15px] font-extrabold tracking-[0.03em] text-[#111] sm:text-[22px] md:whitespace-nowrap">
               Billboard Advertising
             </span>
           </div>
@@ -42,7 +42,7 @@ export default function TraditionalAdvertisingSection() {
               className="h-7 w-7 object-contain sm:h-10 sm:w-10"
               loading="lazy"
             />
-            <span className="text-[15px] font-extrabold tracking-[0.03em] text-[#111] sm:text-[22px]">
+            <span className="text-[15px] font-extrabold tracking-[0.03em] text-[#111] sm:text-[22px] md:whitespace-nowrap">
               Radio Advertising
             </span>
           </div>
@@ -54,7 +54,7 @@ export default function TraditionalAdvertisingSection() {
               className="h-7 w-7 object-contain sm:h-10 sm:w-10"
               loading="lazy"
             />
-            <span className="text-[15px] font-extrabold tracking-[0.03em] text-[#111] sm:text-[22px]">
+            <span className="text-[15px] font-extrabold tracking-[0.03em] text-[#111] sm:text-[22px] md:whitespace-nowrap">
               Television Advertising
             </span>
           </div>

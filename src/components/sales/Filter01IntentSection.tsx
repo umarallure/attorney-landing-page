@@ -16,15 +16,15 @@ export default function Filter01IntentSection() {
           Intent
         </p>
 
-        <p className="mx-auto mt-4 max-w-[980px] text-[14px] font-extrabold leading-snug sm:text-xl md:text-2xl">
+        <p className="mx-auto mt-4 max-w-[980px] text-[14px] font-semibold leading-snug sm:text-xl md:text-2xl">
           The first step to capture and convert on high quality leads is having those prospects knocking on our door and not the other way around like most marketing agencies.
         </p>
 
-        <p className="mx-auto mt-3 max-w-[980px] text-[14px] font-extrabold leading-snug sm:mt-4 sm:text-xl md:text-2xl">
+        <p className="mx-auto mt-3 max-w-[980px] text-[14px] font-semibold leading-snug sm:mt-4 sm:text-xl md:text-2xl">
           We want our prospects searching on Google, Yahoo, &amp; Bing with searches that are specific to your industry.
         </p>
 
-        <p className="mx-auto mt-3 max-w-[980px] text-[14px] font-extrabold leading-snug sm:mt-4 sm:text-xl md:text-2xl">
+        <p className="mx-auto mt-3 max-w-[980px] text-[14px] font-semibold leading-snug sm:mt-4 sm:text-xl md:text-2xl">
           We want our prospects using searches that indicate they are actively looking for a product or service we can deliver, and not like most agencies where they are twisting the prospects arm.
         </p>
       </div>

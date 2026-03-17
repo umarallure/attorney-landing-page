@@ -28,7 +28,7 @@ export default function ExclusiveAccidentCasesSection() {
             Not Shared, Not Resold.
           </p>
 
-          <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-3 sm:gap-10">
+          <div className="mt-8 grid grid-cols-1 gap-8 sm:mt-9 sm:grid-cols-3 sm:gap-10">
             <div className="text-center">
               <div className="font-anton text-7xl leading-none text-brand">$2,500</div>
               <div className="text-lg sm:text-xl font-base text-[#1b1b1b]">Average Cost Per Acquisition</div>
@@ -47,7 +47,7 @@ export default function ExclusiveAccidentCasesSection() {
           </div>
         </div>
 
-        <div className="mt-12 sm:mt-14">
+        <div className="mt-8 sm:mt-10">
           <div className="relative mx-auto w-full max-w-[1100px] overflow-hidden rounded-[20px] sm:rounded-[22px]">
             <Image
               src="/assets/Man.png"
@@ -74,7 +74,7 @@ export default function ExclusiveAccidentCasesSection() {
           </div>
         </div>
 
-        <div className="mt-2 sm:mt-4 text-center">
+        <div className="mt-0.5 sm:mt-2 text-center">
           <p className="text-2xl lg:text-4xl font-extrabold text-brand">Our Case Quality Guarantee</p>
           <p className="mt-2 text-sm sm:text-lg font-medium text-[#444]">
             Built-in protection to eliminate your outsourcing risk.

@@ -16,15 +16,15 @@ export default function Filter02EducationSection() {
           Education
         </p>
 
-        <p className="mx-auto mt-4 max-w-[980px] text-[14px] font-extrabold leading-snug sm:text-xl md:text-2xl">
+        <p className="mx-auto mt-4 max-w-[980px] text-[14px] font-semibold leading-snug sm:text-xl md:text-2xl">
           Prospects will land on one of our thousands of local presence landing pages, informational web pages, educational blogs, or ClickFunnels websites.
         </p>
 
-        <p className="mx-auto mt-3 max-w-[980px] text-[14px] font-extrabold leading-snug sm:mt-4 sm:text-xl md:text-2xl">
+        <p className="mx-auto mt-3 max-w-[980px] text-[14px] font-semibold leading-snug sm:mt-4 sm:text-xl md:text-2xl">
           From those online funnels they will be promoted to completed a long form fill survey where prospects will have their information qualified to see if they will be qualified for your law firm.
         </p>
 
-        <p className="mx-auto mt-3 max-w-[980px] text-[14px] font-extrabold leading-snug sm:mt-4 sm:text-xl md:text-2xl">
+        <p className="mx-auto mt-3 max-w-[980px] text-[14px] font-semibold leading-snug sm:mt-4 sm:text-xl md:text-2xl">
           The entire customer journey, prospects are being educated with transparent information that they will have to qualify for and be approved for submitting settlement claims prior to being connected with your firm.
         </p>
       </div>
