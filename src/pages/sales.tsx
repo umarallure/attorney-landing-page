@@ -29,7 +29,7 @@ export default function SalesPage() {
         <link rel="icon" href="/assets/favicon.ico" />
       </Head>
 
-      <main className="sales-viewport bg-[#d9d9d9] text-[#111]">
+      <main className="sales-viewport text-[#111]">
         <Header secondaryHref="/" secondaryLabel="Home" secondaryIcon="home" primaryHref="/#booking" position="fixed" />
         <div className="sales-viewport sales-scroll overflow-y-auto snap-y snap-mandatory">
           {/* <LoomVideoSection /> */}
@@ -52,7 +52,7 @@ export default function SalesPage() {
           <ImageSection20 />
           <FinalCTASection />
         </div>
-        <SectionArrow />
+        <SectionArrow hideAtTop />
       </main>
     </>
   );

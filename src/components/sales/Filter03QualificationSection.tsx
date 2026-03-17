@@ -16,15 +16,15 @@ export default function Filter03QualificationSection() {
           Qualification
         </p>
 
-        <p className="mx-auto mt-4 max-w-[980px] text-[14px] font-extrabold leading-snug sm:text-xl md:text-2xl">
+        <p className="mx-auto mt-4 max-w-[980px] text-[14px] font-semibold leading-snug sm:text-xl md:text-2xl">
           The last step is to qualify the information that was submitted by prospects who are activity searching for your solutions.
         </p>
 
-        <p className="mx-auto mt-3 max-w-[980px] text-[14px] font-extrabold leading-snug sm:mt-4 sm:text-xl md:text-2xl">
+        <p className="mx-auto mt-3 max-w-[980px] text-[14px] font-semibold leading-snug sm:mt-4 sm:text-xl md:text-2xl">
           Prospect characteristics are the first information that is vetted and qualified, information such as police report, injury report, accident report and more.
         </p>
 
-        <p className="mx-auto mt-3 max-w-[980px] text-[14px] font-extrabold leading-snug sm:mt-4 sm:text-xl md:text-2xl">
+        <p className="mx-auto mt-3 max-w-[980px] text-[14px] font-semibold leading-snug sm:mt-4 sm:text-xl md:text-2xl">
           With this long form survey we will qualify not only for qualification but also for injury and accident severity. This is how we qualify and ensure consistent high quality, ready to sign leads.
         </p>
       </div>

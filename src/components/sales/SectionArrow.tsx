@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react';
 import { FaArrowCircleDown } from 'react-icons/fa';
 
-export default function SectionArrow() {
+type SectionArrowProps = {
+  hideAtTop?: boolean;
+};
+
+export default function SectionArrow({ hideAtTop = false }: SectionArrowProps) {
   const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
@@ -11,7 +15,7 @@ export default function SectionArrow() {
     if (!scroller || !lastSlide) return;
 
     const updateHidden = () => {
-      const atTop = scroller.scrollTop <= 12;
+      const atTop = hideAtTop && scroller.scrollTop <= 12;
       const rootRect = scroller.getBoundingClientRect();
       const slideRect = lastSlide.getBoundingClientRect();
       const visibleTop = Math.max(rootRect.top, slideRect.top);
@@ -23,7 +27,7 @@ export default function SectionArrow() {
     };
 
     const updateHiddenWithAtEnd = (atEnd: boolean) => {
-      const atTop = scroller.scrollTop <= 12;
+      const atTop = hideAtTop && scroller.scrollTop <= 12;
       setHidden(atTop || atEnd);
     };
 
@@ -65,7 +69,7 @@ export default function SectionArrow() {
       scroller.removeEventListener('scroll', updateHidden);
       window.removeEventListener('resize', updateHidden);
     };
-  }, []);
+  }, [hideAtTop]);
 
   if (hidden) return null;
 

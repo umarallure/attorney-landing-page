@@ -2,8 +2,8 @@ export default function TraditionalLeadsSection() {
   return (
     <section className="relative snap-start sales-slide flex w-full items-center justify-center px-4 py-6 sm:px-10 sm:py-14">
       <div className="w-full max-w-[1200px]">
-        <div className="grid grid-cols-1 items-center gap-7 text-center md:grid-cols-[420px_1fr] md:gap-14 md:text-left">
-          <div className="mx-auto flex w-full max-w-[420px] flex-col items-center md:items-start">
+        <div className="grid grid-cols-1 items-center gap-7 text-center md:grid-cols-[420px_1fr] md:gap-14">
+          <div className="mx-auto flex w-full max-w-[420px] flex-col items-center">
             <img
               src="/assets/4.png"
               alt="Traditional advertising"

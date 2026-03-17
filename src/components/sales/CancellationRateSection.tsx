@@ -19,20 +19,25 @@ export default function CancellationRateSection() {
             Because Our Leads Are
           </p>
 
-          <div className="mx-auto mt-5 w-fit max-w-[520px] space-y-4 text-left sm:mt-6 sm:space-y-6">
-            <div className="flex w-full items-start gap-3">
-              <img src="/assets/10.png" alt="Check" className="mt-0.5 h-8 w-8 object-contain sm:mt-1 sm:h-10 sm:w-10" loading="lazy" />
+          <div className="mx-auto mt-5 flex w-fit max-w-[92vw] flex-col items-start gap-4 text-left sm:mt-6 sm:gap-6 md:max-w-[920px] md:flex-row md:items-center md:gap-12">
+            <div className="flex items-center gap-3">
+              <img src="/assets/10.png" alt="Check" className="h-8 w-8 object-contain sm:h-10 sm:w-10" loading="lazy" />
               <p className="text-[18px] font-extrabold tracking-[0.04em] text-[#111] sm:text-[26px]">Qualified</p>
             </div>
-            <div className="flex w-full items-start gap-3">
-              <img src="/assets/10.png" alt="Check" className="mt-0.5 h-8 w-8 object-contain sm:mt-1 sm:h-10 sm:w-10" loading="lazy" />
+            <div className="flex items-center gap-3">
+              <img src="/assets/10.png" alt="Check" className="h-8 w-8 object-contain sm:h-10 sm:w-10" loading="lazy" />
               <p className="text-[18px] font-extrabold tracking-[0.04em] text-[#111] sm:text-[26px]">Interested</p>
             </div>
-            <div className="flex w-full items-start gap-3">
-              <img src="/assets/10.png" alt="Check" className="mt-0.5 h-8 w-8 object-contain sm:mt-1 sm:h-10 sm:w-10" loading="lazy" />
-              <p className="text-[18px] font-extrabold tracking-[0.04em] text-[#111] sm:text-[26px]">
+            <div className="flex items-start gap-3">
+              <img
+                src="/assets/10.png"
+                alt="Check"
+                className="mt-0.5 h-8 w-8 object-contain sm:mt-1 sm:h-10 sm:w-10"
+                loading="lazy"
+              />
+              <p className="text-[18px] font-extrabold tracking-[0.04em] text-[#111] sm:text-[26px] md:whitespace-nowrap">
                 Using Search Engine
-                <br />
+                <br className="md:hidden" />
                 Platforms
               </p>
             </div>

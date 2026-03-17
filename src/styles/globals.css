@@ -30,6 +30,11 @@
   .sales-viewport {
     height: 100vh;
     height: 100dvh;
+    background-image: url('/assets/White-BG.png');
+    background-color: #f3f3f3;
+    background-repeat: no-repeat;
+    background-size: 100% 140%;
+    background-position: top center;
   }
 
   /* Sales page: fixed header offset (matches Header's mobile/desktop heights). */
@@ -53,7 +58,6 @@
     isolation: isolate;
     min-height: calc(100vh - var(--sales-header));
     min-height: calc(100dvh - var(--sales-header));
-    scroll-margin-top: var(--sales-header);
   }
 
   /* Sales page: consistent slide heading sizing across sections. */
