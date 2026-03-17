@@ -3,10 +3,20 @@ import { useCallback, useRef } from 'react';
 export default function FirstAccessSection() {
   const sectionRef = useRef<HTMLElement | null>(null);
 
-  const brandIconStyle = {
-    filter:
-      'brightness(0) saturate(100%) invert(30%) sepia(92%) saturate(2302%) hue-rotate(357deg) brightness(90%) contrast(102%)',
-  } as const;
+  const brandColor = '#CC3F08';
+
+  const getBrandMaskStyle = (src: string) =>
+    ({
+      backgroundColor: brandColor,
+      WebkitMaskImage: `url(${src})`,
+      maskImage: `url(${src})`,
+      WebkitMaskRepeat: 'no-repeat',
+      maskRepeat: 'no-repeat',
+      WebkitMaskSize: 'contain',
+      maskSize: 'contain',
+      WebkitMaskPosition: 'center',
+      maskPosition: 'center',
+    }) as const;
 
   const handleNextSlide = useCallback(() => {
     const nextSlide = sectionRef.current?.nextElementSibling as HTMLElement | null;
@@ -29,9 +39,9 @@ export default function FirstAccessSection() {
             loading="lazy"
           />
 
-          <p className="sales-heading text-brand">
+          <p className="sales-heading leading-[1.05] text-brand">
             <span className="block">Stop Buying Leads.</span>
-            <span className="mt-2 block sm:mt-3 sm:whitespace-nowrap">Start Receiving Signed Retainers.</span>
+            <span className="block sm:whitespace-nowrap">Start Receiving Signed Retainers.</span>
           </p>
 
           <p className="mt-5 max-w-[720px] text-[14px] font-medium leading-[1.55] text-[#111] sm:mt-6 sm:text-[18px]">
@@ -55,67 +65,43 @@ export default function FirstAccessSection() {
               {[0, 1].map((copy) => (
                 <div key={copy} className="flex items-center gap-7 px-6 sm:gap-10">
                   <div className="flex flex-col items-center gap-2 text-center">
-                    <img
-                      src="/assets/firms.png"
-                      alt=""
+                    <span
                       aria-hidden="true"
-                      className="h-8 w-8 select-none object-contain sm:h-10 sm:w-10"
-                      style={brandIconStyle}
-                      loading="lazy"
+                      className="h-8 w-8 select-none sm:h-10 sm:w-10"
+                      style={getBrandMaskStyle('/assets/firms.png')}
                     />
                     <p className="whitespace-nowrap text-[11px] font-semibold tracking-[0.04em] text-[#111]/80 sm:text-[13px]">
                       100+ Law Firms
                     </p>
                   </div>
 
-                  <span className="text-[#111]/30" aria-hidden="true">
-                    •
-                  </span>
-
                   <div className="flex flex-col items-center gap-2 text-center">
-                    <img
-                      src="/assets/state.png"
-                      alt=""
+                    <span
                       aria-hidden="true"
-                      className="h-8 w-8 select-none object-contain sm:h-10 sm:w-10"
-                      style={brandIconStyle}
-                      loading="lazy"
+                      className="h-8 w-8 select-none sm:h-10 sm:w-10"
+                      style={getBrandMaskStyle('/assets/state.png')}
                     />
                     <p className="whitespace-nowrap text-[11px] font-semibold tracking-[0.04em] text-[#111]/80 sm:text-[13px]">
-                      Active in 46+ States
+                      Active in <span className="font-extrabold text-[#111]">46+</span> States
                     </p>
                   </div>
 
-                  <span className="text-[#111]/30" aria-hidden="true">
-                    •
-                  </span>
-
                   <div className="flex flex-col items-center gap-2 text-center">
-                    <img
-                      src="/assets/contract-icon.png"
-                      alt=""
+                    <span
                       aria-hidden="true"
-                      className="h-8 w-8 select-none object-contain sm:h-10 sm:w-10"
-                      style={brandIconStyle}
-                      loading="lazy"
+                      className="h-8 w-8 select-none sm:h-10 sm:w-10"
+                      style={getBrandMaskStyle('/assets/contract-icon.png')}
                     />
                     <p className="whitespace-nowrap text-[11px] font-semibold tracking-[0.04em] text-[#111]/80 sm:text-[13px]">
                       500+ Signed Retainers
                     </p>
                   </div>
 
-                  <span className="text-[#111]/30" aria-hidden="true">
-                    •
-                  </span>
-
                   <div className="flex flex-col items-center gap-2 text-center">
-                    <img
-                      src="/assets/cancellation-order.png"
-                      alt=""
+                    <span
                       aria-hidden="true"
-                      className="h-8 w-8 select-none object-contain sm:h-10 sm:w-10"
-                      style={brandIconStyle}
-                      loading="lazy"
+                      className="h-8 w-8 select-none sm:h-10 sm:w-10"
+                      style={getBrandMaskStyle('/assets/cancellation-order.png')}
                     />
                     <p className="whitespace-nowrap text-[11px] font-semibold tracking-[0.04em] text-[#111]/80 sm:text-[13px]">
                       Sub-10% Cancellation Rate

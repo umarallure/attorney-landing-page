@@ -3,7 +3,7 @@ export default function CancellationRateSection() {
     <section className="relative snap-start sales-slide flex w-full items-center justify-center px-4 py-6 sm:px-10 sm:py-10">
       <div className="w-full max-w-[1200px] text-center text-[#111]">
         <div className="mx-auto w-full max-w-[780px] text-center">
-          <p className="text-[16px] font-extrabold tracking-[0.06em] text-[#111] sm:text-[26px]">
+          <p className="sales-heading text-[#111] md:whitespace-nowrap">
             Our Clients Have a Less Than
           </p>
 
@@ -11,7 +11,7 @@ export default function CancellationRateSection() {
             10%
           </p>
 
-          <p className="mt-2 text-[16px] font-extrabold tracking-[0.06em] text-[#111] sm:text-[26px]">
+          <p className="sales-heading mt-2 text-[#111]">
             Cancellation Rate
           </p>
 
