@@ -4,7 +4,7 @@ export default function ImageSection19() {
       className="relative snap-start sales-slide sales-slide-no-surface flex w-full items-center justify-center px-4 py-6 sm:px-10 sm:py-10"
       style={{ height: 'calc(100dvh - var(--sales-header))' }}
     >
-      <div className="flex h-full w-full max-w-[1400px] min-h-0 flex-col items-center justify-center text-center text-[#111]">
+      <div className="flex h-full w-full max-w-[1400px] min-h-0 flex-col items-center justify-start pt-4 text-center text-[#111] sm:justify-center sm:pt-0">
         <p className="sales-heading mx-auto max-w-[980px] text-brand">
           Real-Time Revenue<br />Zero Effort
         </p>
@@ -12,7 +12,7 @@ export default function ImageSection19() {
           Track every signed case and firm growth in your private portal.
         </p>
 
-        <div className="mt-3 flex w-full justify-center sm:mt-4 sm:flex-1 sm:min-h-0 sm:items-start">
+        <div className="mt-3 flex w-full flex-1 min-h-0 items-center justify-center sm:mt-4 sm:items-start">
           {/* Desktop/tablet */}
           <img
             src="/assets/19.png"
@@ -24,7 +24,7 @@ export default function ImageSection19() {
           <img
             src="/assets/dashboard-(mobile).png"
             alt="Lawyer portal preview (mobile)"
-            className="mx-auto block h-[clamp(380px,64vh,680px)] w-auto max-w-[96%] object-contain sm:hidden"
+            className="mx-auto block h-full w-auto max-w-[96%] object-contain sm:hidden"
             loading="lazy"
           />
         </div>
